@@ -6,7 +6,7 @@
             "vial_personal",
             {
                 "CONVERT_TO": "liatris",
-                "TARGET": "aurora_helix_rev1_liatris"
+                "TARGET": "aurora_helix_rev1"
             }
         ],
         [
@@ -14,7 +14,7 @@
             "vial_personal",
             {
                 "CONVERT_TO": "imera",
-                "TARGET": "aurora_helix_rev1_imera"
+                "TARGET": "aurora_helix_rev1"
             }
         ],
         [
@@ -29,7 +29,7 @@
             "vial_personal",
             {
                 "CONVERT_TO": "liatris",
-                "TARGET": "kyria_rev3_liatris"
+                "TARGET": "kyria_rev3"
             }
         ],
         [
