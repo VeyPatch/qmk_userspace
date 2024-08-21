@@ -3,7 +3,7 @@
     "build_targets": [
         [
             "splitkb/aurora/helix/rev1",
-            "vial",
+            "vial_personal",
             {
                 "CONVERT_TO": "liatris",
                 "TARGET": "aurora_helix_rev1_liatris"
@@ -11,10 +11,46 @@
         ],
         [
             "splitkb/aurora/helix/rev1",
-            "vial",
+            "vial_personal",
             {
                 "CONVERT_TO": "imera",
                 "TARGET": "aurora_helix_rev1_imera"
+            }
+        ],
+        [
+            "kyria_mini",
+            "vial2",
+            {
+                "TARGET": "kyria_mini_helios"
+            }
+        ],
+        [
+            "splitkb/kyria/rev3",
+            "vial_personal",
+            {
+                "CONVERT_TO": "liatris",
+                "TARGET": "kyria_rev3_liatris"
+            }
+        ],
+        [
+            "splitkb/kyria/rev3",
+            "vial_minimal",
+            {
+                "TARGET": "kyria_rev3_atmega"
+            }
+        ],
+        [
+            "splitkb/kyria/rev2/base",
+            "vial_minimal",
+            {
+                "TARGET": "kyria_rev2_atmega"
+            }
+        ],
+        [
+            "splitkb/kyria/rev1/base",
+            "vial_minimal",
+            {
+                "TARGET": "kyria_rev1_atmega"
             }
         ]
     ]
