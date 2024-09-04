@@ -12,5 +12,6 @@ KEY_OVERRIDE_ENABLE = no
 MOUSEKEY_ENABLE = no
 COMBO_ENABLE = no
 QMK_SETTINGS = no
+NKRO_ENABLE = yes
 
 SRC+=oneshot_shim.c

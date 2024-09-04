@@ -9,3 +9,5 @@
 #define VIAL_UNLOCK_COMBO_COLS { 1, 1 }
 
 #define NO_ACTION_ONESHOT
+
+#define FORCE_NKRO

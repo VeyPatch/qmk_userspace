@@ -4,3 +4,5 @@
 #define VIAL_UNLOCK_COMBO_COLS { 2, 2 }//
 
 #define DYNAMIC_KEYMAP_LAYER_COUNT 8
+
+#define FORCE_NKRO
