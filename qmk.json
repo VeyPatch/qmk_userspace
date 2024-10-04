@@ -19,7 +19,7 @@
         ],
         [
             "kyria_mini",
-            "vial2",
+            "vial",
             {
                 "TARGET": "kyria_mini_helios"
             }
@@ -40,18 +40,18 @@
             }
         ],
         [
-            "splitkb/kyria/rev2/base",
-            "vial_minimal",
+            "splitkb/kyria/rev2",
+            "vial",
             {
                 "TARGET": "kyria_rev2_atmega"
             }
-        ],
-        [
-            "splitkb/kyria/rev1/base",
-            "vial_minimal",
-            {
-                "TARGET": "kyria_rev1_atmega"
-            }
         ]
+        // [
+        //     "splitkb/kyria/rev1/base",
+        //     "vial_minimal",
+        //     {
+        //         "TARGET": "kyria_rev1_atmega"
+        //     }
+        // ]
     ]
 }
