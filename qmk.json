@@ -3,7 +3,7 @@
     "build_targets": [
         [
             "splitkb/halcyon/kyria/rev4",
-            "test",
+            "veypatch_vial",
             {
                 "HLC_TFT_DISPLAY": "1",
                 "TARGET": "halcyon_kyria_display"
