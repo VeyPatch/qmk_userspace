@@ -47,13 +47,6 @@
             }
         ],
         [
-            "splitkb/kyria/rev1",
-            "vial",
-            {
-                "TARGET": "kyria_rev1_atmega"
-            }
-        ],
-        [
             "splitkb/aurora/helix/rev1",
             "vial_personal",
             {
