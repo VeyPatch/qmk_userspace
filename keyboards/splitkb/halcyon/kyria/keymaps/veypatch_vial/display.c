@@ -26,6 +26,7 @@ bool display_module_housekeeping_task_user(bool second_display) {
     }
 
     qp_surface_draw(lcd_surface, lcd, 0, 0, 0);
+    qp_flush(lcd);
 
     return false;
 }
