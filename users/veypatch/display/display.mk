@@ -1,7 +1,6 @@
 POST_CONFIG_H += $(USER_PATH)/display/config.h
 
-SRC += $(USER_PATH)/display/display.c \
-	   $(USER_PATH)/display/backlight.c
+SRC += $(USER_PATH)/display/display.c
 
 QUANTUM_PAINTER_ENABLE = yes
 QUANTUM_PAINTER_DRIVERS += st7789_spi surface

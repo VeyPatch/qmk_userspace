@@ -5,6 +5,6 @@ ifneq ($(filter $(strip $(CONVERT_TO)), imera liatris),)
     include $(USER_PATH)/arm/liatris/liatris.mk
 endif
 
-ifdef HALCYON
+ifeq ($(strip $(KEYBOARD)), splitkb/halcyon/kyria/rev4)
   include $(USER_PATH)/arm/halcyon/halcyon.mk
 endif

@@ -1,3 +1,2 @@
 SRC += $(USER_PATH)/arm/liatris/liatris.c
-
-LIATRIS = 1
+POST_CONFIG_H += $(USER_PATH)/arm/liatris/config.h

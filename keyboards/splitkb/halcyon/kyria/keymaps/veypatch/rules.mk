@@ -1,1 +1,0 @@
-HALCYON = 1
