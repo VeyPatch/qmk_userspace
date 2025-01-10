@@ -3,22 +3,21 @@
     "build_targets": [
         [
             "splitkb/halcyon/kyria/rev4",
-            "veypatch_vial",
+            "veypatch",
             {
-                "HLC_TFT_DISPLAY": "1",
                 "TARGET": "halcyon_kyria_display"
             }
         ],
         [
             "kyria_mini",
-            "vial",
+            "veypatch",
             {
                 "TARGET": "kyria_mini_helios"
             }
         ],
         [
             "splitkb/aurora/helix/rev1",
-            "vial_personal",
+            "veypatch",
             {
                 "CONVERT_TO": "liatris",
                 "TARGET": "aurora_helix_rev1"
@@ -26,7 +25,7 @@
         ],
         [
             "splitkb/kyria/rev3",
-            "vial_personal",
+            "veypatch",
             {
                 "CONVERT_TO": "liatris",
                 "TARGET": "kyria_rev3"
@@ -34,25 +33,26 @@
         ],
         [
             "splitkb/kyria/rev3",
-            "vial_minimal",
+            "veypatch",
             {
                 "TARGET": "kyria_rev3_atmega"
             }
         ],
         [
             "splitkb/kyria/rev2",
-            "vial",
+            "veypatch",
             {
                 "TARGET": "kyria_rev2_atmega"
             }
         ],
         [
             "splitkb/aurora/helix/rev1",
-            "vial_personal",
+            "veypatch",
             {
                 "CONVERT_TO": "imera",
                 "TARGET": "aurora_helix_rev1"
             }
-        ]
+        ],
+        ["splitkb/halcyon/kyria/rev4", "veypatch"]
     ]
 }
