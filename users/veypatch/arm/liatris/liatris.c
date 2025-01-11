@@ -3,6 +3,8 @@
 
 #include QMK_KEYBOARD_H
 
+#include "liatris.h"
+
 void liatris_pre_init_user(void) {
   // Set our LED pin as output
   gpio_set_pin_output(24);

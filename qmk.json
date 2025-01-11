@@ -52,7 +52,6 @@
                 "CONVERT_TO": "imera",
                 "TARGET": "aurora_helix_rev1"
             }
-        ],
-        ["splitkb/halcyon/kyria/rev4", "veypatch"]
+        ]
     ]
 }
