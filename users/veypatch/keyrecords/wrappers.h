@@ -281,7 +281,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define __________________RGB_R1___________________       RM_TOGG, RM_SATU, RM_HUEU, RM_VALU, RM_NEXT
 #define __________________RGB_R2___________________       _______, RM_SATD, RM_HUED, RM_VALD, RM_PREV
 
-#define __________________DF_L1____________________       _______, _______, DF(0), _______, _______
+#define __________________DF_L1____________________       QK_BOOT, _______, DF(0), _______, _______
 #define __________________DF_L2____________________       _______, _______, DF(1), _______, _______
 #define __________________DF_L3____________________       _______, _______, DF(2), _______, _______
 // Veypatch specific end
