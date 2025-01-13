@@ -8,13 +8,13 @@
                 "TARGET": "halcyon_kyria_display"
             }
         ],
-        // [
-        //     "kyria_mini",
-        //     "veypatch",
-        //     {
-        //         "TARGET": "kyria_mini_helios"
-        //     }
-        // ],
+        [
+            "veypatch/kyria_mini",
+            "veypatch",
+            {
+                "TARGET": "kyria_mini_helios"
+            }
+        ],
         [
             "splitkb/aurora/helix/rev1",
             "veypatch",

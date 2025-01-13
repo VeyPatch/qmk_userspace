@@ -29,6 +29,7 @@ NOTE: These are all the same length.  If you do a search/replace
 
 #define _________________QWERTY_R1_________________       KC_Y,    KC_U,    KC_I,    KC_O,    KC_P
 #define _________________QWERTY_R2_________________       KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT
+#define _________________QWERTY_R2_SLIM____________       KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN
 #define _________________QWERTY_R3_________________       KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
 
 
@@ -38,6 +39,7 @@ NOTE: These are all the same length.  If you do a search/replace
 
 #define _________________COLEMAK_R1________________       KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN
 #define _________________COLEMAK_R2________________       KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT
+#define _________________COLEMAK_R2_SLIM___________       KC_H,    KC_N,    KC_E,    KC_I,    KC_O
 #define _________________COLEMAK_R3________________       KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH
 
 #define ______________COLEMAK_MOD_DH_L1____________       KC_Q,    KC_W,    KC_F,    KC_P,    KC_B
@@ -55,6 +57,7 @@ NOTE: These are all the same length.  If you do a search/replace
 
 #define _________________DVORAK_R1_________________       KC_F,    KC_G,    KC_C,    KC_R,    KC_L
 #define _________________DVORAK_R2_________________       KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_SLSH
+#define _________________DVORAK_R2_SLIM____________       KC_D,    KC_H,    KC_T,    KC_N,    KC_S,
 #define _________________DVORAK_R3_________________       KC_B,    KC_M,    KC_W,    KC_V,    KC_Z
 
 
@@ -262,7 +265,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define L3_WIDE     KC_LCTL
 #define R0_WIDE     KC_DEL
 #define R1_WIDE     KC_BSPC
-#define R2_WIDE
+#define R2_WIDE     KC_QUOT
 #define R3_WIDE     KC_PSCR
 
 #define __________________THUMB_L1_________________       KC_LALT, KC_LSFT, LT(_NAV, KC_ENTER)
@@ -288,7 +291,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define ________________SYMBOLS_L3_________________       LSFT(KC_5), LSFT(KC_6), KC_LBRC, KC_RBRC, LSFT(KC_GRV)
 
 #define ________________SYMBOLS_R1_________________       _______, _______, KC_PIPE, KC_BSLS, _______
-#define ________________SYMBOLS_R2_________________       LSFT(KC_EQL), KC_MINS, KC_SLSH, LSFT(KC_8), _______
+#define ________________SYMBOLS_R2_________________       LSFT(KC_EQL), KC_MINS, KC_SLSH, LSFT(KC_8), KC_QUOT
 #define ________________SYMBOLS_R3_________________       LSFT(KC_7)  , KC_EQL , _______, _______   , _______
 
 #define _________________MEDIA_L2__________________       _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU
@@ -309,8 +312,13 @@ NOTE: These are all the same length.  If you do a search/replace
 #define NUM_R2_WIDE     KC_PAST
 #define NUM_R3_WIDE     KC_PSLS
 
-#define __________________RGB_R1___________________       RM_TOGG, RM_SATU, RM_HUEU, RM_VALU, RM_NEXT
-#define __________________RGB_R2___________________       _______, RM_SATD, RM_HUED, RM_VALD, RM_PREV
+#ifdef RGB_MATRIX_ENABLE
+#   define __________________RGB_R1___________________       RM_TOGG, RM_SATU, RM_HUEU, RM_VALU, RM_NEXT
+#   define __________________RGB_R2___________________       _______, RM_SATD, RM_HUED, RM_VALD, RM_PREV
+#else
+#   define __________________RGB_R1___________________       ___________________BLANK___________________
+#   define __________________RGB_R2___________________       ___________________BLANK___________________
+#endif
 
 #define RGB_R1_WIDE     RM_SPDU
 #define RGB_R2_WIDE     RM_SPDD

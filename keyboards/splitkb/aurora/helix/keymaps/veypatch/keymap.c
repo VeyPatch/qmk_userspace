@@ -7,7 +7,7 @@
 enum layers {
     _QWERTY = 0,
     _DVORAK,
-    _COLEMAK_DH,
+    _COLEMAK,
     _NAV,
     _SYM,
     _FUNCTION,
@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _________________DVORAK_L2_________________, _________________DVORAK_R2_________________,
         _________________DVORAK_L3_________________, _________________DVORAK_R3_________________
     ),
-    [_COLEMAK_DH] = LAYOUT_base_wrapper(
+    [_COLEMAK] = LAYOUT_base_wrapper(
         ________________NUMBER_LEFT________________, ________________NUMBER_RIGHT_______________,
         _________________COLEMAK_L1________________, _________________COLEMAK_R1________________,
         _________________COLEMAK_L2________________, _________________COLEMAK_R2________________,
