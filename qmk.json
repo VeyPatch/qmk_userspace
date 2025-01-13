@@ -2,65 +2,45 @@
     "userspace_version": "1.1",
     "build_targets": [
         [
-            "splitkb/halcyon/kyria/rev4",
+            "veypatch/kyria_mini",
             "veypatch",
             {
-                "TARGET": "halcyon_kyria_display"
+                "HANDS_LEFT": "1",
+                "TARGET": "kyria_mini_helios_left"
             }
         ],
         [
             "veypatch/kyria_mini",
             "veypatch",
             {
-                "TARGET": "kyria_mini_helios_left",
-                "HANDS_LEFT": "1"
-            }
-        ],
-        [
-            "veypatch/kyria_mini",
-            "veypatch",
-            {
-                "TARGET": "kyria_mini_helios_right",
-                "HANDS_RIGHT": "1"
+                "HANDS_RIGHT": "1",
+                "TARGET": "kyria_mini_helios_right"
             }
         ],
         [
             "splitkb/aurora/helix/rev1",
             "veypatch",
             {
-                "CONVERT_TO": "liatris",
-                "TARGET": "aurora_helix_rev1"
+                "CONVERT_TO": "liatris"
             }
         ],
         [
             "splitkb/aurora/helix/rev1",
             "veypatch",
             {
-                "CONVERT_TO": "imera",
-                "TARGET": "aurora_helix_rev1"
+                "CONVERT_TO": "imera"
             }
         ],
         [
             "splitkb/kyria/rev3",
             "veypatch",
             {
-                "CONVERT_TO": "liatris",
-                "TARGET": "kyria_rev3"
+                "CONVERT_TO": "liatris"
             }
         ],
-        [
-            "splitkb/kyria/rev3",
-            "veypatch",
-            {
-                "TARGET": "kyria_rev3_atmega"
-            }
-        ],
-        [
-            "splitkb/kyria/rev2",
-            "veypatch",
-            {
-                "TARGET": "kyria_rev2_atmega"
-            }
-        ]
+        ["splitkb/kyria/rev1/base", "veypatch"],
+        ["splitkb/kyria/rev2/base", "veypatch"],
+        ["splitkb/kyria/rev3", "veypatch"],
+        ["splitkb/halcyon/kyria/rev4", "veypatch"]
     ]
 }
