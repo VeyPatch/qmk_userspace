@@ -290,7 +290,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define ________________SYMBOLS_L2_________________       LSFT(KC_3), LSFT(KC_4), LSFT(KC_9), LSFT(KC_0), KC_GRV
 #define ________________SYMBOLS_L3_________________       LSFT(KC_5), LSFT(KC_6), KC_LBRC, KC_RBRC, LSFT(KC_GRV)
 
-#define ________________SYMBOLS_R1_________________       _______, _______, KC_PIPE, KC_BSLS, _______
+#define ________________SYMBOLS_R1_________________       _______, _______, KC_PIPE, KC_BSLS, KC_ESC
 #define ________________SYMBOLS_R2_________________       LSFT(KC_EQL), KC_MINS, KC_SLSH, LSFT(KC_8), KC_QUOT
 #define ________________SYMBOLS_R3_________________       LSFT(KC_7)  , KC_EQL , _______, _______   , _______
 
