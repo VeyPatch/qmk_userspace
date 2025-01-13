@@ -256,6 +256,31 @@ NOTE: These are all the same length.  If you do a search/replace
 
 
 // Veypatch specific
+#define L1_WIDE     KC_ESC
+#define L2_WIDE     KC_LSFT
+#define L3_WIDE     KC_LCTL
+#define R1_WIDE     KC_BSPC
+#define R2_WIDE
+#define R3_WIDE     KC_PSCR
+
+#define __________________THUMB_L1_________________       KC_LALT, KC_LSFT, LT(_NAV, KC_ENTER)
+#define __________________THUMB_R1_________________                                             LT(_SYM, KC_TAB), KC_SPC, KC_BSPC
+
+#define WIDE_THUMB_L1       KC_LGUI, KC_DEL
+#define WIDE_THUMB_R1       KC_RGUI, KC_APP
+
+#define _______________NAV_THUMB_L1________________       _______, _______, _______
+#define _______________NAV_THUMB_R1________________                                             MO(_FUNCTION)  , _______, KC_DEL
+
+#define _______________SYM_THUMB_L1________________       MO(_ADJUST), KC_LGUI, MO(_FUNCTION)
+#define _______________SYM_THUMB_R1________________                                             _______, _______, _______
+
+#define _______________FUNC_THUMB_L1_______________       _______, _______, _______
+#define _______________FUNC_THUMB_R1_______________                                             _______, _______, _______
+
+#define _______________ADJ_THUMB_L1________________       _______, _______, _______
+#define _______________ADJ_THUMB_R1________________                                             _______, _______, _______
+
 #define ________________SYMBOLS_L1_________________       LSFT(KC_1), LSFT(KC_2), LSFT(KC_LBRC), LSFT(KC_RBRC), LSFT(KC_BSLS)
 #define ________________SYMBOLS_L2_________________       LSFT(KC_3), LSFT(KC_4), LSFT(KC_9), LSFT(KC_0), KC_GRV
 #define ________________SYMBOLS_L3_________________       LSFT(KC_5), LSFT(KC_6), KC_LBRC, KC_RBRC, LSFT(KC_GRV)
@@ -276,10 +301,17 @@ NOTE: These are all the same length.  If you do a search/replace
 #define __________________NUM_R1___________________       KC_NUM , KC_P7, KC_P8, KC_P9, KC_PPLS
 #define __________________NUM_R2___________________       _______, KC_P4, KC_P5, KC_P6, KC_PEQL
 #define __________________NUM_R3___________________       _______, KC_P1, KC_P2, KC_P3, KC_PENT
-#define __________________NUM_R4___________________       KC_P0  , KC_PDOT
+
+#define NUM_EXTRA       KC_P0  , KC_PDOT
+#define NUM_R1_WIDE     KC_PMNS
+#define NUM_R2_WIDE     KC_PAST
+#define NUM_R3_WIDE     KC_PSLS
 
 #define __________________RGB_R1___________________       RM_TOGG, RM_SATU, RM_HUEU, RM_VALU, RM_NEXT
 #define __________________RGB_R2___________________       _______, RM_SATD, RM_HUED, RM_VALD, RM_PREV
+
+#define RGB_R1_WIDE     RM_SPDU
+#define RGB_R2_WIDE     RM_SPDD
 
 #define __________________DF_L1____________________       QK_BOOT, _______, DF(0), _______, _______
 #define __________________DF_L2____________________       _______, _______, DF(1), _______, _______
