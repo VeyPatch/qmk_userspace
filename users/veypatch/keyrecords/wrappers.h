@@ -256,9 +256,11 @@ NOTE: These are all the same length.  If you do a search/replace
 
 
 // Veypatch specific
+#define L0_WIDE     KC_GRV
 #define L1_WIDE     KC_ESC
 #define L2_WIDE     KC_LSFT
 #define L3_WIDE     KC_LCTL
+#define R0_WIDE     KC_DEL
 #define R1_WIDE     KC_BSPC
 #define R2_WIDE
 #define R3_WIDE     KC_PSCR
@@ -285,7 +287,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define ________________SYMBOLS_L2_________________       LSFT(KC_3), LSFT(KC_4), LSFT(KC_9), LSFT(KC_0), KC_GRV
 #define ________________SYMBOLS_L3_________________       LSFT(KC_5), LSFT(KC_6), KC_LBRC, KC_RBRC, LSFT(KC_GRV)
 
-#define ________________SYMBOLS_R1_________________       _______, _______, _______, KC_BSLS, _______
+#define ________________SYMBOLS_R1_________________       _______, _______, KC_PIPE, KC_BSLS, _______
 #define ________________SYMBOLS_R2_________________       LSFT(KC_EQL), KC_MINS, KC_SLSH, LSFT(KC_8), _______
 #define ________________SYMBOLS_R3_________________       LSFT(KC_7)  , KC_EQL , _______, _______   , _______
 

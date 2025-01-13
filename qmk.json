@@ -15,22 +15,22 @@
         //         "TARGET": "kyria_mini_helios"
         //     }
         // ],
-        // [
-        //     "splitkb/aurora/helix/rev1",
-        //     "veypatch",
-        //     {
-        //         "CONVERT_TO": "liatris",
-        //         "TARGET": "aurora_helix_rev1"
-        //     }
-        // ],
-        // [
-        //     "splitkb/aurora/helix/rev1",
-        //     "veypatch",
-        //     {
-        //         "CONVERT_TO": "imera",
-        //         "TARGET": "aurora_helix_rev1"
-        //     }
-        // ],
+        [
+            "splitkb/aurora/helix/rev1",
+            "veypatch",
+            {
+                "CONVERT_TO": "liatris",
+                "TARGET": "aurora_helix_rev1"
+            }
+        ],
+        [
+            "splitkb/aurora/helix/rev1",
+            "veypatch",
+            {
+                "CONVERT_TO": "imera",
+                "TARGET": "aurora_helix_rev1"
+            }
+        ],
         [
             "splitkb/kyria/rev3",
             "veypatch",
