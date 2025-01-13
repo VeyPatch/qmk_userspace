@@ -1,3 +1,4 @@
+// Copyright 2025 VeyPatch (126267034+VeyPatch@users.noreply.github.com)
 // Copyright 2020 Christopher Courtney, aka Drashna Jael're  (@drashna) <drashna@live.com>
 // Copyright 2020 @jola5
 // SPDX-License-Identifier: GPL-3.0-or-later
@@ -252,6 +253,38 @@ NOTE: These are all the same length.  If you do a search/replace
 #define _________________RAISE_R1__________________       ________________NUMBER_RIGHT_______________
 #define _________________RAISE_R2__________________       KC_NO  , KC_MINS, KC_EQL , KC_LBRC, KC_RBRC
 #define _________________RAISE_R3__________________       KC_NO  , KC_LEFT, KC_DOWN, KC_UP  ,  KC_RGHT
+
+
+// Veypatch specific
+#define ________________SYMBOLS_L1_________________       LSFT(KC_1), LSFT(KC_2), LSFT(KC_LBRC), LSFT(KC_RBRC), LSFT(KC_BSLS)
+#define ________________SYMBOLS_L2_________________       LSFT(KC_3), LSFT(KC_4), LSFT(KC_9), LSFT(KC_0), KC_GRV
+#define ________________SYMBOLS_L3_________________       LSFT(KC_5), LSFT(KC_6), KC_LBRC, KC_RBRC, LSFT(KC_GRV)
+
+#define ________________SYMBOLS_R1_________________       _______, _______, _______, KC_BSLS, _______
+#define ________________SYMBOLS_R2_________________       LSFT(KC_EQL), KC_MINS, KC_SLSH, LSFT(KC_8), _______
+#define ________________SYMBOLS_R3_________________       LSFT(KC_7)  , KC_EQL , _______, _______   , _______
+
+#define _________________MEDIA_L2__________________       _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU
+#define _________________MEDIA_L3__________________       _______, _______, _______, KC_MUTE, KC_VOLD
+#define ________________ARROWS_R2__________________       KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______
+#define ________________ARROWS_R3__________________       _______, KC_LEFT, KC_DOWN, KC_RGHT, _______
+
+#define _________________FUNC_L1___________________       KC_F1, KC_F2, KC_F3, KC_F4, _______
+#define _________________FUNC_L2___________________       KC_F5, KC_F6, KC_F7, KC_F8, _______
+#define _________________FUNC_L3___________________       KC_F9, KC_F10, KC_F11, KC_F12, _______
+
+#define __________________NUM_R1___________________       KC_NUM , KC_P7, KC_P8, KC_P9, KC_PPLS
+#define __________________NUM_R2___________________       _______, KC_P4, KC_P5, KC_P6, KC_PEQL
+#define __________________NUM_R3___________________       _______, KC_P1, KC_P2, KC_P3, KC_PENT
+#define __________________NUM_R4___________________       KC_P0  , KC_PDOT
+
+#define __________________RGB_R1___________________       RM_TOGG, RM_SATU, RM_HUEU, RM_VALU, RM_NEXT
+#define __________________RGB_R2___________________       _______, RM_SATD, RM_HUED, RM_VALD, RM_PREV
+
+#define __________________DF_L1____________________       _______, _______, DF(0), _______, _______
+#define __________________DF_L2____________________       _______, _______, DF(1), _______, _______
+#define __________________DF_L3____________________       _______, _______, DF(2), _______, _______
+// Veypatch specific end
 
 
 #ifdef RGB_MATRIX_ENABLE
