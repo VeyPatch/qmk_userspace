@@ -268,8 +268,8 @@ NOTE: These are all the same length.  If you do a search/replace
 #define R2_WIDE     KC_QUOT
 #define R3_WIDE     KC_PSCR
 
-#define __________________THUMB_L1_________________       KC_LALT, KC_LSFT, LT(_NAV, KC_ENTER)
-#define __________________THUMB_R1_________________                                             LT(_SYM, KC_TAB), KC_SPC, KC_BSPC
+#define __________________THUMB_L1_________________       KC_LALT, KC_LSFT, LT(_SYM, KC_ENTER)
+#define __________________THUMB_R1_________________                                             LT(_NAV, KC_TAB), KC_SPC, KC_BSPC
 
 #define WIDE_THUMB_L1       KC_LGUI, KC_LCTL
 #define WIDE_THUMB_R1       KC_DEL, KC_APP
