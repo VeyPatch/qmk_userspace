@@ -270,9 +270,11 @@ NOTE: These are all the same length.  If you do a search/replace
 
 #define __________________THUMB_L1_________________       KC_DEL, KC_LSFT, LT(_SYM, KC_ENTER)
 #define __________________THUMB_R1_________________                                             LT(_NAV, KC_TAB), KC_SPC, KC_BSPC
+// Combo with most two right of THUMB_L1    L_LCTL
+// Combo with most left of THUMB_R1         L_LALT
 
-#define WIDE_THUMB_L1       KC_LGUI, KC_LALT
-#define WIDE_THUMB_R1       KC_DEL, KC_APP
+#define WIDE_THUMB_L1       KC_LGUI, KC_LCTL
+#define WIDE_THUMB_R1       KC_LALT, KC_APP
 
 #define _______________SYM_THUMB_L1________________       _______, _______, _______
 #define _______________SYM_THUMB_R1________________                                             MO(_FUNCTION), KC_PSCR, KC_DEL

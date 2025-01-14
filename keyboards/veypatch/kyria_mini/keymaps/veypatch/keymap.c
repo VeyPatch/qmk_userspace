@@ -25,7 +25,7 @@ enum layers {
   K01, K02, K03, K04, K05,                                                     K06, K07, K08, K09, K0A, \
   K11, K12, K13, K14, K15,                                                     K16, K17, K18, K19, K1A, \
   K21, K22, K23, K24, K25,                                                     K26, K27, K28, K29, K2A, \
-  KC_LALT, __________________THUMB_L1_________________, __________________THUMB_R1_________________, KC_RGUI\
+  KC_LCTL, __________________THUMB_L1_________________, __________________THUMB_R1_________________, KC_RGUI\
   )
 /* Re-pass though to allow templates to be used */
 #define LAYOUT_base_wrapper(...)       LAYOUT_kyriamini_base(__VA_ARGS__)
