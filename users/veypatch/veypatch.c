@@ -2,11 +2,12 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include "veypatch.h"
+
 #ifdef HALCYON_ENABLE
-#include "display/display.h"
+#   include "display/display.h"
 #endif
 #ifdef LIATRIS_ENABLE
-#include "arm/liatris/liatris.h"
+#   include "arm/liatris/liatris.h"
 #endif
 
 void keyboard_pre_init_user(void) {

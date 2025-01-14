@@ -268,17 +268,17 @@ NOTE: These are all the same length.  If you do a search/replace
 #define R2_WIDE     KC_QUOT
 #define R3_WIDE     KC_PSCR
 
-#define __________________THUMB_L1_________________       KC_LCTL, KC_LSFT, LT(_SYM, KC_ENTER)
+#define __________________THUMB_L1_________________       KC_DEL, KC_LSFT, LT(_SYM, KC_ENTER)
 #define __________________THUMB_R1_________________                                             LT(_NAV, KC_TAB), KC_SPC, KC_BSPC
 
 #define WIDE_THUMB_L1       KC_LGUI, KC_LALT
 #define WIDE_THUMB_R1       KC_DEL, KC_APP
 
-#define _______________NAV_THUMB_L1________________       _______, _______, _______
-#define _______________NAV_THUMB_R1________________                                             MO(_FUNCTION), KC_PSCR, KC_DEL
+#define _______________SYM_THUMB_L1________________       _______, _______, _______
+#define _______________SYM_THUMB_R1________________                                             MO(_FUNCTION), KC_PSCR, KC_DEL
 
-#define _______________SYM_THUMB_L1________________       MO(_ADJUST), KC_LGUI, MO(_FUNCTION)
-#define _______________SYM_THUMB_R1________________                                             _______, _______, _______
+#define _______________NAV_THUMB_L1________________       MO(_ADJUST), KC_LGUI, MO(_FUNCTION)
+#define _______________NAV_THUMB_R1________________                                             _______, _______, _______
 
 #define _______________FUNC_THUMB_L1_______________       _______, _______, _______
 #define _______________FUNC_THUMB_R1_______________                                             _______, _______, _______
@@ -292,10 +292,11 @@ NOTE: These are all the same length.  If you do a search/replace
 
 #define ________________SYMBOLS_R1_________________       _______, _______, KC_PIPE, KC_BSLS, KC_ESC
 #define ________________SYMBOLS_R2_________________       LSFT(KC_EQL), KC_MINS, KC_SLSH, LSFT(KC_8), KC_QUOT
-#define ________________SYMBOLS_R3_________________       LSFT(KC_7)  , KC_EQL , _______, _______   , _______
+#define ________________SYMBOLS_R3_________________       KC_EQL, LSFT(KC_MINS), LSFT(KC_7), _______, LSFT(KC_QUOT)
 
 #define _________________MEDIA_L2__________________       _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU
 #define _________________MEDIA_L3__________________       _______, _______, _______, KC_MUTE, KC_VOLD
+
 #define ________________ARROWS_R2__________________       KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______
 #define ________________ARROWS_R3__________________       _______, KC_LEFT, KC_DOWN, KC_RGHT, _______
 
