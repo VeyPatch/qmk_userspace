@@ -111,7 +111,7 @@ void update_display(void) {
             break;
         case 6:
             layer = "Adjust";
-            qip_drawtext_recolor(lcd_surface, 5, 5, Retron27_underline, layer, HSV_LAYER_6, HSV_BLACK);
+            qp_drawtext_recolor(lcd_surface, 5, 5, Retron27_underline, layer, HSV_LAYER_6, HSV_BLACK);
             break;
         case 7:
             layer = "Game";
