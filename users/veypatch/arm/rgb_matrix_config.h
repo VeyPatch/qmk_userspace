@@ -3,9 +3,10 @@
 
 #pragma once
 
-#define RGB_MATRIX_SLEEP // turn off effects when suspended
-
 #if defined(RGB_MATRIX_ENABLE)
+#   define RGB_MATRIX_SLEEP // turn off effects when suspended
+#   define RGB_MATRIX_KEYPRESSES // React to keypresses
+
 #   define ENABLE_RGB_MATRIX_NONE
 #   define ENABLE_RGB_MATRIX_SOLID_COLOR     // Static single hue no speed support
 #   define ENABLE_RGB_MATRIX_ALPHAS_MODS         // Static dual hue speed is hue for secondary hue
