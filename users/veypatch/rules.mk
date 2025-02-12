@@ -4,6 +4,7 @@ INTROSPECTION_KEYMAP_C = $(USER_PATH)/keyrecords/combos.c
 # Keyboard features
 NKRO_ENABLE = yes
 COMBO_ENABLE = yes
+OS_DETECTION_ENABLE = yes
 
 # Platform specific features
 ifeq ($(PLATFORM_KEY),chibios)
