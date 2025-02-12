@@ -27,3 +27,23 @@ void housekeeping_task_user(void) {
     display_housekeeping_task_user();
 #endif
 }
+
+bool process_detected_host_os_user(os_variant_t detected_os) {
+    if (!process_detected_host_os_user(detected_os)) {
+        return false;
+    }
+
+    switch (detected_os) {
+        case OS_MACOS:
+        case OS_IOS:
+            tap_code16(QK_MAGIC_SWAP_CTL_GUI); // Swap Ctrl and GUI
+            break;
+        case OS_WINDOWS:
+        case OS_LINUX:
+        case OS_UNSURE:
+            tap_code16(QK_MAGIC_UNSWAP_CTL_GUI);
+            break;
+    }
+
+    return true;
+}
