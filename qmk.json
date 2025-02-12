@@ -42,6 +42,6 @@
         ["splitkb/kyria/rev2/base", "veypatch"],
         ["splitkb/kyria/rev3", "veypatch"],
         ["splitkb/halcyon/kyria/rev4", "veypatch"],
-        ["splitkb/aurora/sofle_v2", "veypatch"]
+        ["splitkb/aurora/sofle_v2", "veypatch", ]
     ]
 }

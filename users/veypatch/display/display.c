@@ -17,6 +17,7 @@ static const char *caps =        "Caps";
 static const char *num =         "Num";
 static const char *scroll =      "Scroll";
 const char *layer = "undef";
+const char *os = "undef";
 
 static painter_font_handle_t Retron27;
 static painter_font_handle_t Retron27_underline;
@@ -27,6 +28,7 @@ painter_device_t lcd_surface;
 
 led_t last_led_usb_state = {0};
 layer_state_t last_layer_state = {0};
+os_variant_t last_os = {0};
 
 static uint16_t lcd_surface_fb[135*240];
 
@@ -70,6 +72,7 @@ void backlight_suspend(void) {
 void update_display(void) {
     static bool first_run_led = false;
     static bool first_run_layer = false;
+    static bool first_run_os = false;
 
     if(last_led_usb_state.raw != host_keyboard_led_state().raw || first_run_led == false) {
         led_t led_usb_state = host_keyboard_led_state();
@@ -82,11 +85,37 @@ void update_display(void) {
         first_run_led = true;
     }
 
+    os_variant_t detected_os = detected_host_os();
+    if(last_os != detected_os || first_run_os == false) {
+        switch (detected_os) {
+            case OS_MACOS:
+                os = "Apple";
+                qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
+                break;
+            case OS_IOS:
+                os = "Apple";
+                qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
+                break;
+            case OS_WINDOWS:
+                os = "Windows";
+                qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
+                break;
+            case OS_LINUX:
+                os = "Linux";
+                qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
+                break;
+            case OS_UNSURE:
+                os = "Unsure";
+                qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
+                break;
+        }
+    }
+
     if(last_layer_state != layer_state || first_run_layer == false) {
         qp_rect(lcd_surface, 5, 5, LCD_WIDTH, Retron27->line_height + 5, HSV_BLACK, true);
         switch (get_highest_layer(layer_state|default_layer_state)) {
         case 0:
-            layer = "Qwerty";
+            layer = "Default";
             qp_drawtext_recolor(lcd_surface, 5, 5, Retron27_underline, layer, HSV_LAYER_0, HSV_BLACK);
             break;
         case 1:

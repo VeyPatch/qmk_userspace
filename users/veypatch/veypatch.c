@@ -28,22 +28,21 @@ void housekeeping_task_user(void) {
 #endif
 }
 
+#if defined(OS_DETECTION_ENABLE)
 bool process_detected_host_os_user(os_variant_t detected_os) {
-    if (!process_detected_host_os_user(detected_os)) {
-        return false;
-    }
+    if (is_keyboard_master()) {
 
-    switch (detected_os) {
-        case OS_MACOS:
-        case OS_IOS:
-            tap_code16(QK_MAGIC_SWAP_CTL_GUI); // Swap Ctrl and GUI
-            break;
-        case OS_WINDOWS:
-        case OS_LINUX:
-        case OS_UNSURE:
-            tap_code16(QK_MAGIC_UNSWAP_CTL_GUI);
-            break;
+        switch (detected_os) {
+            case OS_IOS:
+            case OS_MACOS:
+                keymap_config.swap_lctl_lgui = true;
+                break;
+            default:
+                keymap_config.swap_lctl_lgui = false;
+                break;
+        }
     }
 
     return true;
 }
+#endif // OS_DETECTION_ENABLE
