@@ -276,9 +276,8 @@ NOTE: These are all the same length.  If you do a search/replace
 #define WIDE_THUMB_R1       KC_LALT, KC_APP
 
 #define _______________SYM_THUMB_L1________________       _______, _______, _______
-#define _______________SYM_THUMB_R1________________                                             MO(_FUNCTION), KC_PSCR, KC_DEL
-
-#define _______________NAV_THUMB_L1________________       MO(_ADJUST), KC_LGUI, MO(_FUNCTION)
+#define _______________SYM_THUMB_R1________________                                             MO(_FUNCTION), _______, _______
+#define _______________NAV_THUMB_L1________________       MO(_ADJUST), _______, MO(_FUNCTION)
 #define _______________NAV_THUMB_R1________________                                             _______, _______, _______
 
 #define _______________FUNC_THUMB_L1_______________       _______, _______, _______
