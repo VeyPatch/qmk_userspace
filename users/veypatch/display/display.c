@@ -87,6 +87,7 @@ void update_display(void) {
 
     os_variant_t detected_os = detected_host_os();
     if(last_os != detected_os || first_run_os == false) {
+        qp_rect(lcd_surface, 5, Retron27->line_height * 2, LCD_WIDTH, Retron27->line_height * 3, HSV_BLACK, true);
         switch (detected_os) {
             case OS_MACOS:
                 os = "Apple";
