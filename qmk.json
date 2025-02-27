@@ -1,22 +1,22 @@
 {
     "userspace_version": "1.1",
     "build_targets": [
-        [
-            "veypatch/kyria_mini",
-            "veypatch",
-            {
-                "HANDS_LEFT": "1",
-                "TARGET": "kyria_mini_helios_left"
-            }
-        ],
-        [
-            "veypatch/kyria_mini",
-            "veypatch",
-            {
-                "HANDS_RIGHT": "1",
-                "TARGET": "kyria_mini_helios_right"
-            }
-        ],
+//        [
+//            "veypatch/kyria_mini",
+//            "veypatch",
+//            {
+//                "HANDS_LEFT": "1",
+//                "TARGET": "kyria_mini_helios_left"
+//            }
+//        ],
+//        [
+//            "veypatch/kyria_mini",
+//            "veypatch",
+//            {
+//                "HANDS_RIGHT": "1",
+//                "TARGET": "kyria_mini_helios_right"
+//            }
+//        ],
         [
             "splitkb/aurora/helix/rev1",
             "veypatch",
