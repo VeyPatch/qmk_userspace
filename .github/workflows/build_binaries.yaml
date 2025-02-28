@@ -11,7 +11,7 @@ jobs:
     uses: qmk/.github/.github/workflows/qmk_userspace_build.yml@main
     with:
       qmk_repo: veypatch/qmk_firmware
-      qmk_ref: master
+      qmk_ref: personal
 
   publish:
     name: 'QMK Userspace Publish'
