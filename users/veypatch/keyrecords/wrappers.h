@@ -269,22 +269,20 @@ NOTE: These are all the same length.  If you do a search/replace
 
 #define __________________THUMB_L1_________________       KC_DEL, KC_LSFT, LT(_SYM, KC_ENTER)
 #define __________________THUMB_R1_________________                                             LT(_NAV, KC_TAB), KC_SPC, KC_BSPC
-// Combo with most two right of THUMB_L1    L_LCTL
-// Combo with most left of THUMB_R1         L_LALT
 
-#define WIDE_THUMB_L1       KC_LGUI, KC_LCTL
-#define WIDE_THUMB_R1       KC_LALT, KC_APP
+#define WIDE_THUMB_L1       KC_LGUI, KC_LALT
+#define WIDE_THUMB_R1       KC_APP, MO(_ADJUST)
 
 #define _______________SYM_THUMB_L1________________       _______, _______, _______
-#define _______________SYM_THUMB_R1________________                                             MO(_FUNCTION), _______, _______
-#define _______________NAV_THUMB_L1________________       MO(_ADJUST), _______, MO(_FUNCTION)
-#define _______________NAV_THUMB_R1________________                                             _______, _______, _______
+#define _______________SYM_THUMB_R1________________       _______, _______, _______
+#define _______________NAV_THUMB_L1________________       _______, _______, _______
+#define _______________NAV_THUMB_R1________________       _______, _______, _______
 
 #define _______________FUNC_THUMB_L1_______________       _______, _______, _______
-#define _______________FUNC_THUMB_R1_______________                                             _______, _______, _______
+#define _______________FUNC_THUMB_R1_______________       _______, _______, _______
 
 #define _______________ADJ_THUMB_L1________________       _______, _______, _______
-#define _______________ADJ_THUMB_R1________________                                             _______, _______, _______
+#define _______________ADJ_THUMB_R1________________       _______, _______, _______
 
 #define ________________SYMBOLS_L1_________________       LSFT(KC_1), LSFT(KC_2), LSFT(KC_LBRC), LSFT(KC_RBRC), LSFT(KC_BSLS)
 #define ________________SYMBOLS_L2_________________       LSFT(KC_3), LSFT(KC_4), LSFT(KC_9), LSFT(KC_0), KC_GRV

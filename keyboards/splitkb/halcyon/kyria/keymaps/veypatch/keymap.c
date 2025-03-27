@@ -4,16 +4,6 @@
 #include QMK_KEYBOARD_H
 #include "veypatch.h"
 
-enum layers {
-    _QWERTY = 0,
-    _DVORAK,
-    _COLEMAK,
-    _SYM,
-    _NAV,
-    _FUNCTION,
-    _ADJUST,
-};
-
 // clang-format off
 #define LAYOUT_wrapper(...)            LAYOUT(__VA_ARGS__)
 #define LAYOUT_kyria_base( \
