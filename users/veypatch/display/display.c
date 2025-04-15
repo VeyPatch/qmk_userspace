@@ -203,11 +203,11 @@ void update_display(void) {
     }
 
     // if (get_layer_map_has_updated()) {
-        uint16_t x = 5;
+        uint16_t x = 0;
         uint16_t y = 150;
         uint16_t xpos = x, ypos = y;
         for (uint8_t lm_y = 0; lm_y < LAYER_MAP_ROWS; lm_y++) {
-            xpos = x + 20;
+            xpos = x + 5;
             for (uint8_t lm_x = 0; lm_x < LAYER_MAP_COLS; lm_x++) {
                 uint16_t keycode = extract_basic_keycode(layer_map[lm_y][lm_x], NULL, false);
                 wchar_t  code[2] = {0};
@@ -219,8 +219,8 @@ void update_display(void) {
                 }
                 xpos += qp_drawtext_recolor(
                     lcd_surface, xpos, ypos, thintel15, (char*)code,
-                    200, 255, peek_matrix_layer_map(lm_y, lm_x) ? 0 : 180,
-                    50, 255, peek_matrix_layer_map(lm_y, lm_x) ? 100 : 0);
+                    0, 0, peek_matrix_layer_map(lm_y, lm_x) ? 0 : 255,
+                    200, 255, peek_matrix_layer_map(lm_y, lm_x) ? 255 : 0);
                 xpos += qp_drawtext_recolor(lcd_surface, xpos, ypos, thintel15, " ", 0, 0, 0, 0, 0, 0);
             }
             ypos += thintel15->line_height + 4;

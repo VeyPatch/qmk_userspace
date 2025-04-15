@@ -4,3 +4,6 @@
 #pragma once
 
 #define HALCYON_ENABLE
+#define LAYER_MAP_REMAPPING
+#define LAYER_MAP_COLS 18
+#define LAYER_MAP_ROWS 6
