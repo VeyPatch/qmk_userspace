@@ -13,4 +13,4 @@ SRC += $(USER_PATH)/display/graphics/patchouli.qgf.c
 # Fonts
 SRC += $(USER_PATH)/display/graphics/fonts/Retron2000-27.qff.c \
        $(USER_PATH)/display/graphics/fonts/Retron2000-underline-27.qff.c \
-	   $(USER_PATH)/display/graphics/fonts/thintel15.qff.c \
+	   $(USER_PATH)/display/graphics/fonts/fonts.qff.c \

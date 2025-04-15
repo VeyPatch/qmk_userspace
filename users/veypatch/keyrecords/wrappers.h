@@ -284,13 +284,13 @@ NOTE: These are all the same length.  If you do a search/replace
 #define _______________ADJ_THUMB_L1________________       _______, _______, _______
 #define _______________ADJ_THUMB_R1________________       _______, _______, _______
 
-#define ________________SYMBOLS_L1_________________       LSFT(KC_1), LSFT(KC_2), LSFT(KC_LBRC), LSFT(KC_RBRC), LSFT(KC_BSLS)
-#define ________________SYMBOLS_L2_________________       LSFT(KC_3), LSFT(KC_4), LSFT(KC_9), LSFT(KC_0), KC_GRV
-#define ________________SYMBOLS_L3_________________       LSFT(KC_5), LSFT(KC_6), KC_LBRC, KC_RBRC, LSFT(KC_GRV)
+#define ________________SYMBOLS_L1_________________       KC_EXLM, KC_AT  , KC_LCBR, KC_RCBR, KC_PIPE
+#define ________________SYMBOLS_L2_________________       KC_HASH, KC_DLR , KC_LPRN, KC_RPRN, KC_GRV
+#define ________________SYMBOLS_L3_________________       KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD
 
 #define ________________SYMBOLS_R1_________________       _______, _______, KC_PIPE, KC_BSLS, KC_ESC
-#define ________________SYMBOLS_R2_________________       LSFT(KC_EQL), KC_MINS, KC_SLSH, LSFT(KC_8), KC_QUOT
-#define ________________SYMBOLS_R3_________________       KC_EQL, LSFT(KC_MINS), LSFT(KC_7), _______, LSFT(KC_QUOT)
+#define ________________SYMBOLS_R2_________________       KC_PLUS, KC_MINS, KC_SLSH, KC_ASTR, KC_QUOT
+#define ________________SYMBOLS_R3_________________       KC_EQL , KC_UNDS, KC_AMPR, _______, KC_DQUO
 
 #define _________________MEDIA_L2__________________       _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU
 #define _________________MEDIA_L3__________________       _______, _______, _______, KC_MUTE, KC_VOLD

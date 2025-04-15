@@ -13,7 +13,7 @@
 // Fonts mono2
 #include "graphics/fonts/Retron2000-27.qff.h"
 #include "graphics/fonts/Retron2000-underline-27.qff.h"
-#include "graphics/fonts/thintel15.qff.h"
+#include "graphics/fonts/fonts.qff.h"
 
 static const char *caps =        "C";
 static const char *num =         "N";
@@ -23,7 +23,7 @@ const char *os = "undef";
 
 static painter_font_handle_t Retron27;
 static painter_font_handle_t Retron27_underline;
-static painter_font_handle_t thintel15;
+static painter_font_handle_t proggy_clean_15;
 static painter_image_handle_t my_image;
 
 painter_device_t lcd;
@@ -76,23 +76,6 @@ __attribute__((weak)) const char PROGMEM code_to_name[256] = {
     ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '   // Fx
 };
 // clang-format on
-
-bool backlight_off = false;
-
-// Timeout handling
-void backlight_wakeup(void) {
-    backlight_off = false;
-    backlight_enable();
-    if (get_backlight_level() == 0) {
-        backlight_level(BACKLIGHT_LEVELS);
-    }
-}
-
-// Timeout handling
-void backlight_suspend(void) {
-    backlight_off = true;
-    backlight_disable();
-}
 
 uint16_t extract_basic_keycode(uint16_t keycode, keyrecord_t *record, bool check_hold) {
     if (IS_QK_MOD_TAP(keycode)) {
@@ -201,10 +184,12 @@ void update_display(void) {
         last_layer_state = layer_state;
         first_run_layer = true;
     }
+}
 
-    // if (get_layer_map_has_updated()) {
+void update_layer_map(void) {
+    if (get_layer_map_has_updated()) {
         uint16_t x = 0;
-        uint16_t y = 150;
+        uint16_t y = 160;
         uint16_t xpos = x, ypos = y;
         for (uint8_t lm_y = 0; lm_y < LAYER_MAP_ROWS; lm_y++) {
             xpos = x + 5;
@@ -218,14 +203,15 @@ void update_display(void) {
                     code[0] = pgm_read_byte(&code_to_name[keycode]);
                 }
                 xpos += qp_drawtext_recolor(
-                    lcd_surface, xpos, ypos, thintel15, (char*)code,
+                    lcd_surface, xpos, ypos, proggy_clean_15, (char*)code,
                     0, 0, peek_matrix_layer_map(lm_y, lm_x) ? 0 : 255,
                     200, 255, peek_matrix_layer_map(lm_y, lm_x) ? 255 : 0);
-                xpos += qp_drawtext_recolor(lcd_surface, xpos, ypos, thintel15, " ", 0, 0, 0, 0, 0, 0);
+                xpos += qp_drawtext_recolor(lcd_surface, xpos, ypos, proggy_clean_15, "", 0, 0, 0, 0, 0, 0);
             }
-            ypos += thintel15->line_height + 4;
+            ypos += proggy_clean_15->line_height + 4;
         }
-    // }
+        set_layer_map_has_updated(false);
+    }
 }
 
 void display_post_init_user(void) {
@@ -253,7 +239,7 @@ void display_post_init_user(void) {
     if(is_keyboard_master()) {
         Retron27 = qp_load_font_mem(font_Retron2000_27);
         Retron27_underline = qp_load_font_mem(font_Retron2000_underline_27);
-        thintel15 = qp_load_font_mem(font_thintel15);
+        proggy_clean_15 = qp_load_font_mem(font_proggy_clean_15);
     }
 
     if (!is_keyboard_master()) {
@@ -264,18 +250,14 @@ void display_post_init_user(void) {
 
 void display_housekeeping_task_user(void) {
     if (is_keyboard_master()) {
+        static uint32_t previous_matrix_activity_time = 0;
+        if (previous_matrix_activity_time != last_matrix_activity_time()) {
+            set_layer_map_dirty();
+            previous_matrix_activity_time = last_matrix_activity_time();
+        }
         update_display();
-        qp_surface_draw(lcd_surface, lcd, 0, 0, 0);
+        update_layer_map();
     }
 
-    // Backlight feature
-    if (last_input_activity_elapsed() <= HLC_BACKLIGHT_TIMEOUT) {
-        if (backlight_off) {
-            backlight_wakeup();
-        }
-    } else {
-        if (!backlight_off) {
-            backlight_suspend();
-        }
-    }
+    qp_surface_draw(lcd_surface, lcd, 0, 0, 0);
 }
