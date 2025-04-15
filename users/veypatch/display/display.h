@@ -5,4 +5,5 @@
 
 void display_housekeeping_task_user(void);
 void display_post_init_user(void);
+void display_detected_host_os_user(void);
 extern const char PROGMEM code_to_name[256];

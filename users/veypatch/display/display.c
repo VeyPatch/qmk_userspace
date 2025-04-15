@@ -21,6 +21,8 @@ static const char *scroll =      "S";
 const char *layer = "undef";
 const char *os = "undef";
 
+bool force_redraw;
+
 static painter_font_handle_t Retron27;
 static painter_font_handle_t Retron27_underline;
 static painter_font_handle_t proggy_clean_15;
@@ -100,11 +102,7 @@ uint16_t extract_basic_keycode(uint16_t keycode, keyrecord_t *record, bool check
 }
 
 void update_display(void) {
-    static bool first_run_led = false;
-    static bool first_run_layer = false;
-    static bool first_run_os = false;
-
-    if(last_led_usb_state.raw != host_keyboard_led_state().raw || first_run_led == false) {
+    if(last_led_usb_state.raw != host_keyboard_led_state().raw || force_redraw) {
         led_t led_usb_state = host_keyboard_led_state();
 
         led_usb_state.caps_lock   ? qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 3, Retron27_underline, caps,   HSV_CAPS_ON,   HSV_BLACK) : qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 3, Retron27, caps,   HSV_CAPS_OFF,   HSV_BLACK);
@@ -112,37 +110,9 @@ void update_display(void) {
         led_usb_state.scroll_lock ? qp_drawtext_recolor(lcd_surface, LCD_WIDTH - qp_textwidth(Retron27, scroll) - 5, Retron27->line_height * 3, Retron27_underline, scroll, HSV_SCROLL_ON, HSV_BLACK) : qp_drawtext_recolor(lcd_surface, LCD_WIDTH - qp_textwidth(Retron27, scroll) - 5, Retron27->line_height * 3, Retron27, scroll, HSV_SCROLL_OFF, HSV_BLACK);
 
         last_led_usb_state = led_usb_state;
-        first_run_led = true;
     }
 
-    os_variant_t detected_os = detected_host_os();
-    if(last_os != detected_os || first_run_os == false) {
-        qp_rect(lcd_surface, 5, Retron27->line_height * 2, LCD_WIDTH, Retron27->line_height * 3, HSV_BLACK, true);
-        switch (detected_os) {
-            case OS_MACOS:
-                os = "Apple";
-                qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
-                break;
-            case OS_IOS:
-                os = "Apple";
-                qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
-                break;
-            case OS_WINDOWS:
-                os = "Windows";
-                qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
-                break;
-            case OS_LINUX:
-                os = "Linux";
-                qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
-                break;
-            case OS_UNSURE:
-                os = "Unsure";
-                qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
-                break;
-        }
-    }
-
-    if(last_layer_state != layer_state || first_run_layer == false) {
+    if(last_layer_state != layer_state || force_redraw) {
         qp_rect(lcd_surface, 5, 5, LCD_WIDTH, Retron27->line_height + 5, HSV_BLACK, true);
         switch (get_highest_layer(layer_state|default_layer_state)) {
         case 0:
@@ -182,7 +152,6 @@ void update_display(void) {
             qp_drawtext_recolor(lcd_surface, 5, 5, Retron27_underline, layer, HSV_LAYER_UNDEF, HSV_BLACK);
         }
         last_layer_state = layer_state;
-        first_run_layer = true;
     }
 }
 
@@ -214,6 +183,34 @@ void update_layer_map(void) {
     }
 }
 
+void display_detected_host_os_user(void) {
+    os_variant_t detected_os = detected_host_os();
+    qp_rect(lcd_surface, 5, Retron27->line_height * 2, LCD_WIDTH, Retron27->line_height * 3, HSV_BLACK, true);
+
+    switch (detected_os) {
+        case OS_MACOS:
+            os = "Apple";
+            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
+            break;
+        case OS_IOS:
+            os = "Apple";
+            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
+            break;
+        case OS_WINDOWS:
+            os = "Windows";
+            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
+            break;
+        case OS_LINUX:
+            os = "Linux";
+            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
+            break;
+        case OS_UNSURE:
+            os = "Unsure";
+            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27, os, HSV_PURPLE, HSV_BLACK);
+            break;
+    }
+}
+
 void display_post_init_user(void) {
     // Turn on backlight
     backlight_enable();
@@ -236,6 +233,8 @@ void display_post_init_user(void) {
     qp_surface_draw(lcd_surface, lcd, 0, 0, 0);
     qp_flush(lcd);
 
+    force_redraw = 1;
+
     if(is_keyboard_master()) {
         Retron27 = qp_load_font_mem(font_Retron2000_27);
         Retron27_underline = qp_load_font_mem(font_Retron2000_underline_27);
@@ -257,7 +256,12 @@ void display_housekeeping_task_user(void) {
         }
         update_display();
         update_layer_map();
-    }
+        if(force_redraw == 1) {
+            display_detected_host_os_user();
+        }
 
-    qp_surface_draw(lcd_surface, lcd, 0, 0, 0);
+        qp_surface_draw(lcd_surface, lcd, 0, 0, 0);
+
+        force_redraw = 0;
+    }
 }

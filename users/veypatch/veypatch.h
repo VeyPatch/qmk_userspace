@@ -6,6 +6,8 @@
 
 #include "keyrecords/wrappers.h"
 
+extern bool force_redraw;
+
 enum layers {
     _QWERTY = 0,
     _DVORAK,

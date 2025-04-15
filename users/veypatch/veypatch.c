@@ -42,6 +42,9 @@ bool process_detected_host_os_user(os_variant_t detected_os) {
                 break;
         }
     }
+#ifdef HALCYON_ENABLE
+    display_detected_host_os_user();
+#endif
 
     return true;
 }
