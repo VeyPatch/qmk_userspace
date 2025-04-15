@@ -105,9 +105,9 @@ void update_display(void) {
     if(last_led_usb_state.raw != host_keyboard_led_state().raw || force_redraw) {
         led_t led_usb_state = host_keyboard_led_state();
 
-        led_usb_state.caps_lock   ? qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2, Retron27_underline, caps,   HSV_CAPS_ON,   HSV_BLACK) : qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 3, Retron27, caps,   HSV_CAPS_OFF,   HSV_BLACK);
-        led_usb_state.num_lock    ? qp_drawtext_recolor(lcd_surface, (LCD_WIDTH - qp_textwidth(Retron27, scroll)) / 2, Retron27->line_height * 2, Retron27_underline, num,    HSV_NUM_ON,    HSV_BLACK) : qp_drawtext_recolor(lcd_surface, (LCD_WIDTH - qp_textwidth(Retron27, scroll)) / 2, Retron27->line_height * 3, Retron27, num,    HSV_NUM_OFF,    HSV_BLACK);
-        led_usb_state.scroll_lock ? qp_drawtext_recolor(lcd_surface, LCD_WIDTH - qp_textwidth(Retron27, scroll) - 5, Retron27->line_height * 2, Retron27_underline, scroll, HSV_SCROLL_ON, HSV_BLACK) : qp_drawtext_recolor(lcd_surface, LCD_WIDTH - qp_textwidth(Retron27, scroll) - 5, Retron27->line_height * 3, Retron27, scroll, HSV_SCROLL_OFF, HSV_BLACK);
+        led_usb_state.caps_lock   ? qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2.5, Retron27_underline, caps,   HSV_CAPS_ON,   HSV_BLACK) : qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 2.5, Retron27, caps,   HSV_CAPS_OFF,   HSV_BLACK);
+        led_usb_state.num_lock    ? qp_drawtext_recolor(lcd_surface, (LCD_WIDTH - qp_textwidth(Retron27, scroll)) / 2, Retron27->line_height * 2.5, Retron27_underline, num,    HSV_NUM_ON,    HSV_BLACK) : qp_drawtext_recolor(lcd_surface, (LCD_WIDTH - qp_textwidth(Retron27, scroll)) / 2, Retron27->line_height * 2.5, Retron27, num,    HSV_NUM_OFF,    HSV_BLACK);
+        led_usb_state.scroll_lock ? qp_drawtext_recolor(lcd_surface, LCD_WIDTH - qp_textwidth(Retron27, scroll) - 5, Retron27->line_height * 2.5, Retron27_underline, scroll, HSV_SCROLL_ON, HSV_BLACK) : qp_drawtext_recolor(lcd_surface, LCD_WIDTH - qp_textwidth(Retron27, scroll) - 5, Retron27->line_height * 2.5, Retron27, scroll, HSV_SCROLL_OFF, HSV_BLACK);
 
         last_led_usb_state = led_usb_state;
     }
@@ -185,28 +185,28 @@ void update_layer_map(void) {
 
 void display_detected_host_os_user(void) {
     os_variant_t detected_os = detected_host_os();
-    qp_rect(lcd_surface, 5, Retron27->line_height, LCD_WIDTH, Retron27->line_height * 2, HSV_BLACK, true);
+    qp_rect(lcd_surface, 5, Retron27->line_height * 1.25, LCD_WIDTH, Retron27->line_height * 2.5, HSV_BLACK, true);
 
     switch (detected_os) {
         case OS_MACOS:
             os = "Apple";
-            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height, Retron27, os, HSV_PURPLE, HSV_BLACK);
+            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 1.25, Retron27, os, HSV_PURPLE, HSV_BLACK);
             break;
         case OS_IOS:
             os = "Apple";
-            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height, Retron27, os, HSV_PURPLE, HSV_BLACK);
+            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 1.25, Retron27, os, HSV_PURPLE, HSV_BLACK);
             break;
         case OS_WINDOWS:
             os = "Windows";
-            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height, Retron27, os, HSV_PURPLE, HSV_BLACK);
+            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 1.25, Retron27, os, HSV_PURPLE, HSV_BLACK);
             break;
         case OS_LINUX:
             os = "Linux";
-            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height, Retron27, os, HSV_PURPLE, HSV_BLACK);
+            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 1.25, Retron27, os, HSV_PURPLE, HSV_BLACK);
             break;
         case OS_UNSURE:
             os = "Unsure";
-            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height, Retron27, os, HSV_PURPLE, HSV_BLACK);
+            qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 1.25, Retron27, os, HSV_PURPLE, HSV_BLACK);
             break;
     }
 }
