@@ -5,6 +5,7 @@
 #include "qp.h"
 #include "qp_surface.h"
 #include "display.h"
+#include "modules/drashna/layer_map/layer_map.h"
 
 // Images
 #include "graphics/patchouli.qgf.h"
@@ -12,15 +13,17 @@
 // Fonts mono2
 #include "graphics/fonts/Retron2000-27.qff.h"
 #include "graphics/fonts/Retron2000-underline-27.qff.h"
+#include "graphics/fonts/thintel15.qff.h"
 
-static const char *caps =        "Caps";
-static const char *num =         "Num";
-static const char *scroll =      "Scroll";
+static const char *caps =        "C";
+static const char *num =         "N";
+static const char *scroll =      "S";
 const char *layer = "undef";
 const char *os = "undef";
 
 static painter_font_handle_t Retron27;
 static painter_font_handle_t Retron27_underline;
+static painter_font_handle_t thintel15;
 static painter_image_handle_t my_image;
 
 painter_device_t lcd;
@@ -52,6 +55,28 @@ static uint16_t lcd_surface_fb[135*240];
 // #define HSV_LAYER_8 213, 56, 255
 #define HSV_LAYER_UNDEF 0, 255, 255
 
+// clang-format off
+__attribute__((weak)) const char PROGMEM code_to_name[256] = {
+//   0    1    2    3    4    5    6    7    8    9    A    B    c    D    E    F
+    ' ', ' ', ' ', ' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',  // 0x
+    'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2',  // 1x
+    '3', '4', '5', '6', '7', '8', '9', '0', 'E', 'E', 'B', 'T', '_', '-', '=', '[',  // 2x
+    ']','\\', '#', ';','\'', '`', ',', '.', '/', 'C', 'F', 'F', 'F', 'F', 'F', 'F',  // 3x
+    'F', 'F', 'F', 'F', 'F', 'F', 'P', 'S',  19, ' ', ' ', ' ', 'D', ' ', ' ', 'R',  // 4x
+    'L', 'D', 'U', 'N', '/', '*', '-', '+',  23, '1', '2', '3', '4', '5', '6', '7',  // 5x
+    '8', '9', '0', '.','\\', 'A',   0, '=', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // 6x
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // 7x
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // 8x
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // 9x
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'M', 'V', 'V', ' ', ' ', ' ', ' ', ' ',  // Ax
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // Bx
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'M', 'M', 'M',  // Cx
+    'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M', 'M',  // Dx
+    'C', 'S', 'A', 'G', 'C', 'S', 'A', 'G', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ',  // Ex
+    ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '   // Fx
+};
+// clang-format on
+
 bool backlight_off = false;
 
 // Timeout handling
@@ -69,6 +94,28 @@ void backlight_suspend(void) {
     backlight_disable();
 }
 
+uint16_t extract_basic_keycode(uint16_t keycode, keyrecord_t *record, bool check_hold) {
+    if (IS_QK_MOD_TAP(keycode)) {
+        if (record->tap.count || !check_hold) {
+            keycode = keycode_config(QK_MOD_TAP_GET_TAP_KEYCODE(keycode));
+        } else {
+            keycode = keycode_config(0xE0 + biton(QK_MOD_TAP_GET_MODS(keycode) & 0xF) +
+                                     biton(QK_MOD_TAP_GET_MODS(keycode) & 0x10));
+        }
+    } else if (IS_QK_LAYER_TAP(keycode) && (record->tap.count || !check_hold)) {
+        keycode = keycode_config(QK_LAYER_TAP_GET_TAP_KEYCODE(keycode));
+    } else if (IS_QK_MODS(keycode)) {
+        keycode = keycode_config(QK_MODS_GET_BASIC_KEYCODE(keycode));
+    } else if (IS_QK_ONE_SHOT_MOD(keycode)) {
+        keycode = keycode_config(0xE0 + biton(QK_ONE_SHOT_MOD_GET_MODS(keycode) & 0xF) +
+                                 biton(QK_ONE_SHOT_MOD_GET_MODS(keycode) & 0x10));
+    } else if (IS_QK_BASIC(keycode)) {
+        keycode = keycode_config(keycode);
+    }
+
+    return keycode;
+}
+
 void update_display(void) {
     static bool first_run_led = false;
     static bool first_run_layer = false;
@@ -77,9 +124,9 @@ void update_display(void) {
     if(last_led_usb_state.raw != host_keyboard_led_state().raw || first_run_led == false) {
         led_t led_usb_state = host_keyboard_led_state();
 
-        led_usb_state.caps_lock   ? qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - Retron27->line_height * 3 - 15, Retron27_underline, caps,   HSV_CAPS_ON,   HSV_BLACK) : qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - Retron27->line_height * 3 - 15, Retron27, caps,   HSV_CAPS_OFF,   HSV_BLACK);
-        led_usb_state.num_lock    ? qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - Retron27->line_height * 2 - 10, Retron27_underline, num,    HSV_NUM_ON,    HSV_BLACK) : qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - Retron27->line_height * 2 - 10, Retron27, num,    HSV_NUM_OFF,    HSV_BLACK);
-        led_usb_state.scroll_lock ? qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - Retron27->line_height - 5,      Retron27_underline, scroll, HSV_SCROLL_ON, HSV_BLACK) : qp_drawtext_recolor(lcd_surface, 5, LCD_HEIGHT - Retron27->line_height - 5,      Retron27, scroll, HSV_SCROLL_OFF, HSV_BLACK);
+        led_usb_state.caps_lock   ? qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 3, Retron27_underline, caps,   HSV_CAPS_ON,   HSV_BLACK) : qp_drawtext_recolor(lcd_surface, 5, Retron27->line_height * 3, Retron27, caps,   HSV_CAPS_OFF,   HSV_BLACK);
+        led_usb_state.num_lock    ? qp_drawtext_recolor(lcd_surface, (LCD_WIDTH - qp_textwidth(Retron27, scroll)) / 2, Retron27->line_height * 3, Retron27_underline, num,    HSV_NUM_ON,    HSV_BLACK) : qp_drawtext_recolor(lcd_surface, (LCD_WIDTH - qp_textwidth(Retron27, scroll)) / 2, Retron27->line_height * 3, Retron27, num,    HSV_NUM_OFF,    HSV_BLACK);
+        led_usb_state.scroll_lock ? qp_drawtext_recolor(lcd_surface, LCD_WIDTH - qp_textwidth(Retron27, scroll) - 5, Retron27->line_height * 3, Retron27_underline, scroll, HSV_SCROLL_ON, HSV_BLACK) : qp_drawtext_recolor(lcd_surface, LCD_WIDTH - qp_textwidth(Retron27, scroll) - 5, Retron27->line_height * 3, Retron27, scroll, HSV_SCROLL_OFF, HSV_BLACK);
 
         last_led_usb_state = led_usb_state;
         first_run_led = true;
@@ -154,6 +201,31 @@ void update_display(void) {
         last_layer_state = layer_state;
         first_run_layer = true;
     }
+
+    // if (get_layer_map_has_updated()) {
+        uint16_t x = 5;
+        uint16_t y = 150;
+        uint16_t xpos = x, ypos = y;
+        for (uint8_t lm_y = 0; lm_y < LAYER_MAP_ROWS; lm_y++) {
+            xpos = x + 20;
+            for (uint8_t lm_x = 0; lm_x < LAYER_MAP_COLS; lm_x++) {
+                uint16_t keycode = extract_basic_keycode(layer_map[lm_y][lm_x], NULL, false);
+                wchar_t  code[2] = {0};
+                if (keycode > 0xFF) {
+                    keycode = KC_SPC;
+                }
+                if (keycode < ARRAY_SIZE(code_to_name)) {
+                    code[0] = pgm_read_byte(&code_to_name[keycode]);
+                }
+                xpos += qp_drawtext_recolor(
+                    lcd_surface, xpos, ypos, thintel15, (char*)code,
+                    200, 255, peek_matrix_layer_map(lm_y, lm_x) ? 0 : 180,
+                    50, 255, peek_matrix_layer_map(lm_y, lm_x) ? 100 : 0);
+                xpos += qp_drawtext_recolor(lcd_surface, xpos, ypos, thintel15, " ", 0, 0, 0, 0, 0, 0);
+            }
+            ypos += thintel15->line_height + 4;
+        }
+    // }
 }
 
 void display_post_init_user(void) {
@@ -181,6 +253,7 @@ void display_post_init_user(void) {
     if(is_keyboard_master()) {
         Retron27 = qp_load_font_mem(font_Retron2000_27);
         Retron27_underline = qp_load_font_mem(font_Retron2000_underline_27);
+        thintel15 = qp_load_font_mem(font_thintel15);
     }
 
     if (!is_keyboard_master()) {
