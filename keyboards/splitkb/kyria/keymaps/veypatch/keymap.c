@@ -66,6 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef OLED_ENABLE
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
+        os_variant_t detected_os = detected_host_os();
         // QMK Logo and version information
         // clang-format off
         static const char PROGMEM qmk_logo[] = {
@@ -77,12 +78,29 @@ bool oled_task_user(void) {
         oled_write_P(qmk_logo, false);
         oled_write_P(PSTR("Kyria "), false);
 #if defined(KEYBOARD_splitkb_kyria_rev1)
-        oled_write_P(PSTR("rev1\n\n"), false);
+        oled_write_P(PSTR("rev1 "), false);
 #elif defined(KEYBOARD_splitkb_kyria_rev2)
-        oled_write_P(PSTR("rev2\n\n"), false);
+        oled_write_P(PSTR("rev2 "), false);
 #elif defined(KEYBOARD_splitkb_kyria_rev3)
-        oled_write_P(PSTR("rev3\n\n"), false);
+        oled_write_P(PSTR("rev3 "), false);
 #endif
+        switch (detected_os) {
+            case OS_MACOS:
+                oled_write_P(PSTR("Apple\n\n"), false);
+                break;
+            case OS_IOS:
+                oled_write_P(PSTR("Apple\n\n"), false);
+                break;
+            case OS_WINDOWS:
+                oled_write_P(PSTR("Windows\n\n"), false);
+                break;
+            case OS_LINUX:
+                oled_write_P(PSTR("Linux\n\n"), false);
+                break;
+            case OS_UNSURE:
+                oled_write_P(PSTR("Unsure\n\n"), false);
+                break;
+        }
         // Host Keyboard Layer Status
         oled_write_P(PSTR("Layer: "), false);
         switch (get_highest_layer(layer_state | default_layer_state)) {
