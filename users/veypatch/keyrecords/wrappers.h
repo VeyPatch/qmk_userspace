@@ -288,7 +288,7 @@ NOTE: These are all the same length.  If you do a search/replace
 #define ________________SYMBOLS_L2_________________       KC_HASH, KC_DLR , KC_LPRN, KC_RPRN, KC_GRV
 #define ________________SYMBOLS_L3_________________       KC_PERC, KC_CIRC, KC_LBRC, KC_RBRC, KC_TILD
 
-#define ________________SYMBOLS_R1_________________       _______, _______, KC_PIPE, KC_BSLS, KC_ESC
+#define ________________SYMBOLS_R1_________________       UM(SNEK), UM(EM_DASH), KC_PIPE, KC_BSLS, KC_ESC
 #define ________________SYMBOLS_R2_________________       KC_PLUS, KC_MINS, KC_SLSH, KC_ASTR, KC_QUOT
 #define ________________SYMBOLS_R3_________________       KC_EQL , KC_UNDS, KC_AMPR, _______, KC_DQUO
 

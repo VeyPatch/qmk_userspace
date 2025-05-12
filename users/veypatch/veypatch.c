@@ -28,6 +28,11 @@ void housekeeping_task_user(void) {
 #endif
 }
 
+const uint32_t PROGMEM unicode_map[] = {
+    [EM_DASH]  = 0x2014,  // —
+    [SNEK]     = 0x1F40D, // 🐍
+};
+
 #if defined(OS_DETECTION_ENABLE)
 bool process_detected_host_os_user(os_variant_t detected_os) {
     if (is_keyboard_master()) {
@@ -35,9 +40,15 @@ bool process_detected_host_os_user(os_variant_t detected_os) {
         switch (detected_os) {
             case OS_IOS:
             case OS_MACOS:
+                set_unicode_input_mode(UC_MAC);
                 keymap_config.swap_lctl_lgui = true;
                 break;
+            case OS_WINDOWS:
+                set_unicode_input_mode(UC_WINC);
+                keymap_config.swap_lctl_lgui = false;
+                break;
             default:
+                set_unicode_input_mode(UC_LNX);
                 keymap_config.swap_lctl_lgui = false;
                 break;
         }

@@ -18,3 +18,8 @@ enum layers {
     _ADJUST,
     _GAME,
 };
+
+enum unicode_names {
+    EM_DASH,
+    SNEK
+};
