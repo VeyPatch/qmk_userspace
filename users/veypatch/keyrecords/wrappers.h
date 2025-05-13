@@ -292,8 +292,8 @@ NOTE: These are all the same length.  If you do a search/replace
 #define ________________SYMBOLS_R2_________________       KC_PLUS, KC_MINS, KC_SLSH, KC_ASTR, KC_QUOT
 #define ________________SYMBOLS_R3_________________       KC_EQL , KC_UNDS, KC_AMPR, _______, KC_DQUO
 
-#define _________________MEDIA_L2__________________       _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU
-#define _________________MEDIA_L3__________________       _______, _______, _______, KC_MUTE, KC_VOLD
+#define _________________MEDIA_L2__________________       UM(CHECK), KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU
+#define _________________MEDIA_L3__________________       UM(CROSS), _______, _______, KC_MUTE, KC_VOLD
 
 #define ________________ARROWS_R2__________________       KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______
 #define ________________ARROWS_R3__________________       _______, KC_LEFT, KC_DOWN, KC_RGHT, _______

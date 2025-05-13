@@ -31,6 +31,8 @@ void housekeeping_task_user(void) {
 const uint32_t PROGMEM unicode_map[] = {
     [EM_DASH]  = 0x2014,  // —
     [SNEK]     = 0x1F40D, // 🐍
+    [CHECK]    = 0x2705,  // ✅
+    [CROSS]    = 0x274C,  // ❌
 };
 
 #if defined(OS_DETECTION_ENABLE)
