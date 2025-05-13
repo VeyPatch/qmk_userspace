@@ -21,5 +21,7 @@ enum layers {
 
 enum unicode_names {
     EM_DASH,
-    SNEK
+    SNEK,
+    CHECK,
+    CROSS
 };
