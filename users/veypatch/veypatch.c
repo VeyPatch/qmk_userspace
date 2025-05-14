@@ -46,7 +46,7 @@ bool process_detected_host_os_user(os_variant_t detected_os) {
                 keymap_config.swap_lctl_lgui = true;
                 break;
             case OS_WINDOWS:
-                set_unicode_input_mode(UNICODE_MODE_WINDOWS);
+                set_unicode_input_mode(UNICODE_MODE_WINCOMPOSE);
                 keymap_config.swap_lctl_lgui = false;
                 break;
             default:
