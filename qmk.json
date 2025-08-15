@@ -31,16 +31,16 @@
                 "CONVERT_TO": "imera"
             }
         ],
-        [
-            "splitkb/kyria/rev3",
-            "veypatch",
-            {
-                "CONVERT_TO": "liatris"
-            }
-        ],
-        ["splitkb/kyria/rev1/base", "veypatch"],
-        ["splitkb/kyria/rev2/base", "veypatch"],
-        ["splitkb/kyria/rev3", "veypatch"],
+        // [
+        //     "splitkb/kyria/rev3",
+        //     "veypatch",
+        //     {
+        //         "CONVERT_TO": "liatris"
+        //     }
+        // ],
+        // ["splitkb/kyria/rev1/base", "veypatch"],
+        // ["splitkb/kyria/rev2/base", "veypatch"],
+        // ["splitkb/kyria/rev3", "veypatch"],
         ["splitkb/halcyon/kyria/rev4", "veypatch"]
         // [
         //     "splitkb/aurora/sofle_v2",
