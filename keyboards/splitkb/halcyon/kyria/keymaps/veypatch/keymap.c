@@ -92,7 +92,4 @@ keypos_t layer_remap[LAYER_MAP_ROWS][LAYER_MAP_COLS] = {
         {{0, 3}, {1, 3}, {2, 3}, {3, 3}, {4, 3}, {5, 3}},
     };
 // clang-format on
-#    ifdef ENCODER_MAP_ENABLE
-        const uint8_t PROGMEM encoder_hand_swap_config[NUM_ENCODERS] = {1,0};
-#    endif
 #endif
