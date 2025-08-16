@@ -164,18 +164,18 @@ void update_display(void) {
               lcd_surface,
               5,
               Retron27->line_height * 3.75,
-              Retron27,
+              Retron27_underline,
               "Swap",
-              HSV_SWAP_ON,
+              HSV_SWAP_OFF,
               HSV_BLACK
           )
         : qp_drawtext_recolor(
               lcd_surface,
               5,
               Retron27->line_height * 3.75,
-              Retron27_underline,
+              Retron27,
               "Swap",
-              HSV_SWAP_OFF,
+              HSV_SWAP_ON,
               HSV_BLACK
           );
         last_swap_state = current_swap_state;
