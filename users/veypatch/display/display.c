@@ -164,7 +164,7 @@ void update_display(void) {
               lcd_surface,
               5,
               Retron27->line_height * 3.75,
-              Retron27_underline,
+              Retron27,
               "Swap",
               HSV_SWAP_ON,
               HSV_BLACK
@@ -173,7 +173,7 @@ void update_display(void) {
               lcd_surface,
               5,
               Retron27->line_height * 3.75,
-              Retron27,
+              Retron27_underline,
               "Swap",
               HSV_SWAP_OFF,
               HSV_BLACK

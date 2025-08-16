@@ -15,7 +15,7 @@
   LAYOUT_wrapper( \
   L1_WIDE, K01, K02, K03, K04, K05,                                                     K06, K07, K08, K09, K0A, R1_WIDE, \
   L2_WIDE, K11, K12, K13, K14, K15,                                                     K16, K17, K18, K19, K1A, K1B,      \
-  L3_WIDE, K21, K22, K23, K24, K25, KC_CAPS, SH_TOGG,                 TG(_GAME), KC_F24, K26, K27, K28, K29, K2A, R3_WIDE, \
+  L3_WIDE, K21, K22, K23, K24, K25, KC_CAPS, SH_TOGG,                 KC_F22, TG(_GAME), K26, K27, K28, K29, K2A, R3_WIDE, \
   WIDE_THUMB_L1, __________________THUMB_L1_________________, __________________THUMB_R1_________________, WIDE_THUMB_R1 \
   )
 /* Re-pass though to allow templates to be used */
@@ -65,7 +65,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_GAME] = LAYOUT_wrapper(
         L1_WIDE, _________________QWERTY_L1_________________,                                     ___________________BLANK___________________, R1_WIDE,
         L2_WIDE, _________________QWERTY_L2_________________,                                     ________________ARROWS_R2__________________, _______,
-        L3_WIDE, _________________QWERTY_L3_________________, _______, _______, TG(_GAME), _______, ________________ARROWS_R3__________________, _______,
+        L3_WIDE, _________________QWERTY_L3_________________, _______, _______, _______, TG(_GAME), ________________ARROWS_R3__________________, _______,
                     WIDE_THUMB_L1, KC_DEL, KC_SPC, LT(_SYM, KC_ENTER),          LT(_NAV, KC_TAB), KC_SPC, KC_BSPC, WIDE_THUMB_R1
     )
 };
