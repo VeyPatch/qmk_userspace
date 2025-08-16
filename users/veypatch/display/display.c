@@ -34,6 +34,7 @@ painter_device_t lcd_surface;
 led_t last_led_usb_state = {0};
 layer_state_t last_layer_state = {0};
 os_variant_t last_os = {0};
+static bool last_swap_state = false;
 
 static uint16_t lcd_surface_fb[135*240];
 
@@ -45,6 +46,8 @@ static uint16_t lcd_surface_fb[135*240];
 #define HSV_SCROLL_ON 202, 191, 245
 #define HSV_NUM_OFF 142, 104, 77
 #define HSV_NUM_ON 142, 191, 245
+#define HSV_SWAP_ON 145, 235, 155
+#define HSV_SWAP_OFF 145, 191, 245
 
 #define HSV_LAYER_0 0, 0, 160
 #define HSV_LAYER_3 0, 82, 255
@@ -152,6 +155,30 @@ void update_display(void) {
             qp_drawtext_recolor(lcd_surface, 5, 5, Retron27_underline, layer, HSV_LAYER_UNDEF, HSV_BLACK);
         }
         last_layer_state = layer_state;
+    }
+
+    bool current_swap_state = is_swap_hands_on();
+    if (last_swap_state != current_swap_state || force_redraw) {
+        is_swap_hands_on()
+        ? qp_drawtext_recolor(
+              lcd_surface,
+              5,
+              Retron27->line_height * 3.75,
+              Retron27_underline,
+              "Swap",
+              HSV_SWAP_ON,
+              HSV_BLACK
+          )
+        : qp_drawtext_recolor(
+              lcd_surface,
+              5,
+              Retron27->line_height * 3.75,
+              Retron27,
+              "Swap",
+              HSV_SWAP_OFF,
+              HSV_BLACK
+          );
+        last_swap_state = current_swap_state;
     }
 }
 
