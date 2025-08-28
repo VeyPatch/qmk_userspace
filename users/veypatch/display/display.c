@@ -33,7 +33,9 @@ painter_device_t lcd_surface;
 
 led_t last_led_usb_state = {0};
 layer_state_t last_layer_state = {0};
+#if defined(OS_DETECTION_ENABLE)
 os_variant_t last_os = {0};
+#endif // OS_DETECTION_ENABLE
 static bool last_swap_state = false;
 
 static uint16_t lcd_surface_fb[135*240];
