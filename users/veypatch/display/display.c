@@ -210,6 +210,7 @@ void update_layer_map(void) {
     }
 }
 
+#if defined(OS_DETECTION_ENABLE)
 void display_detected_host_os_user(void) {
     os_variant_t detected_os = detected_host_os();
     qp_rect(lcd_surface, 5, Retron27->line_height * 1.25, LCD_WIDTH, Retron27->line_height * 2.5, HSV_BLACK, true);
@@ -237,6 +238,7 @@ void display_detected_host_os_user(void) {
             break;
     }
 }
+#endif // OS_DETECTION_ENABLE
 
 void display_post_init_user(void) {
     // Turn on backlight
