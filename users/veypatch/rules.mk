@@ -1,7 +1,7 @@
 SRC += $(USER_PATH)/veypatch.c
 
 # Keyboard features
-OS_DETECTION_ENABLE = yes
+OS_DETECTION_ENABLE = no
 
 # Unicode features
 UNICODE_COMMON = yes

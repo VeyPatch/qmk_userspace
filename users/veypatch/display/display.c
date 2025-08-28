@@ -283,9 +283,12 @@ void display_housekeeping_task_user(void) {
         }
         update_display();
         update_layer_map();
+
+#if defined(OS_DETECTION_ENABLE)
         if(force_redraw == 1) {
             display_detected_host_os_user();
         }
+#endif // OS_DETECTION_ENABLE
 
         qp_surface_draw(lcd_surface, lcd, 0, 0, 0);
 

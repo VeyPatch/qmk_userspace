@@ -84,6 +84,8 @@ bool oled_task_user(void) {
 #elif defined(KEYBOARD_splitkb_kyria_rev3)
         oled_write_P(PSTR("rev3 "), false);
 #endif
+
+#if defined(OS_DETECTION_ENABLE)
         switch (detected_os) {
             case OS_MACOS:
                 oled_write_P(PSTR("Apple\n\n"), false);
@@ -101,6 +103,8 @@ bool oled_task_user(void) {
                 oled_write_P(PSTR("Unsure\n\n"), false);
                 break;
         }
+#endif // OS_DETECTION_ENABLE
+
         // Host Keyboard Layer Status
         oled_write_P(PSTR("Layer: "), false);
         switch (get_highest_layer(layer_state | default_layer_state)) {
