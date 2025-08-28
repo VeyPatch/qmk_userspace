@@ -66,7 +66,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 #ifdef OLED_ENABLE
 bool oled_task_user(void) {
     if (is_keyboard_master()) {
+#if defined(OS_DETECTION_ENABLE)
         os_variant_t detected_os = detected_host_os();
+#endif // OS_DETECTION_ENABLE
         // QMK Logo and version information
         // clang-format off
         static const char PROGMEM qmk_logo[] = {
