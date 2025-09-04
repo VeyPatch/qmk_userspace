@@ -3,7 +3,6 @@
 
 #include QMK_KEYBOARD_H
 #include "veypatch.h"
-#include "modules/drashna/layer_map/layer_map.h"
 
 // clang-format off
 #define LAYOUT_wrapper(...)            LAYOUT(__VA_ARGS__)
@@ -70,6 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 
+#ifdef COMMUNITY_MODULE_LAYER_MAP_ENABLE
 keypos_t layer_remap[LAYER_MAP_ROWS][LAYER_MAP_COLS] = {
     { { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 } },
     { {   6,   0 }, {   5,   0 }, {   4,   0 }, {   3,   0 }, {   2,   0 }, {   1,   0 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, {   1,   4 }, {   2,   4 }, {   3,   4 }, {   4,   4 }, {   5,   4 }, {   6,   4 } },
@@ -78,6 +78,7 @@ keypos_t layer_remap[LAYER_MAP_ROWS][LAYER_MAP_COLS] = {
     { { 255, 255 }, { 255, 255 }, { 255, 255 }, {   4,   3 }, {   2,   3 }, {   1,   3 }, {   5,   3 }, {   0,   3 }, { 255, 255 }, { 255, 255 }, {   0,   7 }, {   5,   7 }, {   1,   7 }, {   2,   7 }, {   4,   7 }, { 255, 255 }, { 255, 255 }, { 255, 255 } },
     { { 255, 255 }, {   0, 252 }, {   0, 253 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, {   1, 252 }, {   1, 253 }, { 255, 255 } },
 };
+#endif // COMMUNITY_MODULE_LAYER_MAP_ENABLE
 
 #ifdef SWAP_HANDS_ENABLE
 // clang-format off
@@ -95,7 +96,7 @@ keypos_t layer_remap[LAYER_MAP_ROWS][LAYER_MAP_COLS] = {
 #    ifdef ENCODER_MAP_ENABLE
         const uint8_t PROGMEM encoder_hand_swap_config[NUM_ENCODERS] = {1,0};
 #    endif
-#endif
+#endif // SWAP_HANDS_ENABLE
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
@@ -108,4 +109,4 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
     [6] = { ENCODER_CCW_CW(_______, _______),  ENCODER_CCW_CW(_______, _______)  },
     [7] = { ENCODER_CCW_CW(_______, _______),  ENCODER_CCW_CW(_______, _______)  },
 };
-#endif
+#endif // ENCODER_MAP_ENABLE

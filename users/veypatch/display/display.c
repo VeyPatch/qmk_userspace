@@ -5,7 +5,9 @@
 #include "qp.h"
 #include "qp_surface.h"
 #include "display.h"
-#include "modules/drashna/layer_map/layer_map.h"
+#ifdef COMMUNITY_MODULE_LAYER_MAP_ENABLE
+#   include "modules/drashna/layer_map/layer_map.h"
+#endif
 
 // Images
 #include "graphics/patchouli.qgf.h"
@@ -62,6 +64,7 @@ static uint16_t lcd_surface_fb[135*240];
 // #define HSV_LAYER_8 213, 56, 255
 #define HSV_LAYER_UNDEF 0, 255, 255
 
+#ifdef COMMUNITY_MODULE_LAYER_MAP_ENABLE
 // clang-format off
 __attribute__((weak)) const char PROGMEM code_to_name[256] = {
 //   0    1    2    3    4    5    6    7    8    9    A    B    c    D    E    F
@@ -105,6 +108,7 @@ uint16_t extract_basic_keycode(uint16_t keycode, keyrecord_t *record, bool check
 
     return keycode;
 }
+#endif // COMMUNITY_MODULE_LAYER_MAP_ENABLE
 
 void update_display(void) {
     if(last_led_usb_state.raw != host_keyboard_led_state().raw || force_redraw) {
@@ -184,6 +188,7 @@ void update_display(void) {
     }
 }
 
+#ifdef COMMUNITY_MODULE_LAYER_MAP_ENABLE
 void update_layer_map(void) {
     if (get_layer_map_has_updated()) {
         uint16_t x = 0;
@@ -211,6 +216,7 @@ void update_layer_map(void) {
         set_layer_map_has_updated(false);
     }
 }
+#endif // COMMUNITY_MODULE_LAYER_MAP_ENABLE
 
 #if defined(OS_DETECTION_ENABLE)
 void display_detected_host_os_user(void) {
@@ -286,7 +292,10 @@ void display_housekeeping_task_user(void) {
             previous_matrix_activity_time = last_matrix_activity_time();
         }
         update_display();
+
+#ifdef COMMUNITY_MODULE_LAYER_MAP_ENABLE
         update_layer_map();
+#endif // COMMUNITY_MODULE_LAYER_MAP_ENABLE
 
 #if defined(OS_DETECTION_ENABLE)
         if(force_redraw == 1) {
