@@ -32,19 +32,19 @@ bool oled_task_user(void) {
 #if defined(OS_DETECTION_ENABLE)
         switch (detected_os) {
             case OS_MACOS:
-                oled_write_P(PSTR("Apple\n\n"), false);
+                oled_write_P(PSTR("Apple"), false);
                 break;
             case OS_IOS:
-                oled_write_P(PSTR("Apple\n\n"), false);
+                oled_write_P(PSTR("Apple"), false);
                 break;
             case OS_WINDOWS:
-                oled_write_P(PSTR("Windows\n\n"), false);
+                oled_write_P(PSTR("Windows"), false);
                 break;
             case OS_LINUX:
-                oled_write_P(PSTR("Linux\n\n"), false);
+                oled_write_P(PSTR("Linux"), false);
                 break;
             case OS_UNSURE:
-                oled_write_P(PSTR("Unsure\n\n"), false);
+                oled_write_P(PSTR("Unsure"), false);
                 break;
         }
 #endif // OS_DETECTION_ENABLE
