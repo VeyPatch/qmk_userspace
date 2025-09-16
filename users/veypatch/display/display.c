@@ -162,7 +162,7 @@ void update_display(void) {
         }
         last_layer_state = layer_state;
     }
-
+#ifdef SWAP_HANDS_ENABLE
     bool current_swap_state = is_swap_hands_on();
     if (last_swap_state != current_swap_state || force_redraw) {
         is_swap_hands_on()
@@ -185,6 +185,7 @@ void update_display(void) {
               HSV_BLACK
           );
         last_swap_state = current_swap_state;
+#endif // SWAP_HANDS_ENABLE
     }
 }
 
