@@ -189,8 +189,8 @@ void update_display(void) {
               HSV_BLACK
           );
         last_swap_state = current_swap_state;
-#endif // SWAP_HANDS_ENABLE
     }
+#endif // SWAP_HANDS_ENABLE
 }
 
 #ifdef COMMUNITY_MODULE_LAYER_MAP_ENABLE
