@@ -5,23 +5,32 @@
             "splitkb/aurora/helix/rev1",
             "veypatch",
             {
-                "CONVERT_TO": "liatris"
+                "CONVERT_TO": "liatris",
+                "TARGET": "helix_rev1_vial_liatris"
             }
         ],
         [
             "splitkb/aurora/helix/rev1",
             "veypatch",
             {
-                "CONVERT_TO": "imera"
+                "CONVERT_TO": "imera",
+                "TARGET": "helix_rev1_vial_imera"
             }
         ],
         [
             "splitkb/kyria/rev3",
             "veypatch",
             {
-                "CONVERT_TO": "liatris"
+                "CONVERT_TO": "liatris",
+                "TARGET": "kyria_rev3_vial_liatris"
             }
         ],
-        ["splitkb/halcyon/kyria/rev4", "veypatch"]
+        [
+            "splitkb/halcyon/kyria/rev4",
+            "veypatch",
+            {
+                "TARGET": "kyria_rev4_vial"
+            }
+        ]
     ]
 }
