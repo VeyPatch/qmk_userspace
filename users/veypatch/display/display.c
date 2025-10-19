@@ -293,7 +293,9 @@ void display_housekeeping_task_user(void) {
     if (is_keyboard_master()) {
         static uint32_t previous_matrix_activity_time = 0;
         if (previous_matrix_activity_time != last_matrix_activity_time()) {
+#ifdef COMMUNITY_MODULE_LAYER_MAP_ENABLE
             set_layer_map_dirty();
+#endif // COMMUNITY_MODULE_LAYER_MAP_ENABLE
             previous_matrix_activity_time = last_matrix_activity_time();
         }
         update_display();
