@@ -3,7 +3,6 @@
 
 #include QMK_KEYBOARD_H
 #include "veypatch.h"
-#include "modules/drashna/layer_map/layer_map.h"
 
 // clang-format off
 #define LAYOUT_wrapper(...)            LAYOUT(__VA_ARGS__)
@@ -15,7 +14,7 @@
   LAYOUT_wrapper( \
   L1_WIDE, K01, K02, K03, K04, K05,                                                     K06, K07, K08, K09, K0A, R1_WIDE, \
   L2_WIDE, K11, K12, K13, K14, K15,                                                     K16, K17, K18, K19, K1A, K1B,      \
-  L3_WIDE, K21, K22, K23, K24, K25, KC_F23, KC_CAPS,                    KC_F22, KC_F24, K26, K27, K28, K29, K2A, R3_WIDE, \
+  L3_WIDE, K21, K22, K23, K24, K25, KC_CAPS, KC_F23,                 KC_F24, TG(_GAME), K26, K27, K28, K29, K2A, R3_WIDE, \
   WIDE_THUMB_L1, __________________THUMB_L1_________________, __________________THUMB_R1_________________, WIDE_THUMB_R1 \
   )
 /* Re-pass though to allow templates to be used */
@@ -26,16 +25,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _________________QWERTY_L1_________________, _________________QWERTY_R1_________________,
         _________________QWERTY_L2_________________, _________________QWERTY_R2_________________,
         _________________QWERTY_L3_________________, _________________QWERTY_R3_________________
-    ),
-    [_DVORAK] = LAYOUT_base_wrapper(
-        _________________DVORAK_L1_________________, _________________DVORAK_R1_________________,
-        _________________DVORAK_L2_________________, _________________DVORAK_R2_________________,
-        _________________DVORAK_L3_________________, _________________DVORAK_R3_________________
-    ),
-    [_COLEMAK] = LAYOUT_base_wrapper(
-        _________________COLEMAK_L1________________, _________________COLEMAK_R1________________,
-        _________________COLEMAK_L2________________, _________________COLEMAK_R2________________,
-        _________________COLEMAK_L3________________, _________________COLEMAK_R3________________
     ),
     [_SYM] = LAYOUT_wrapper(
         _______, ________________SYMBOLS_L1_________________,                                     ________________SYMBOLS_R1_________________, _______,
@@ -57,13 +46,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                  _______, _______, _______________FUNC_THUMB_L1_______________, _______________FUNC_THUMB_R1_______________, NUM_EXTRA
     ),
     [_ADJUST] = LAYOUT_wrapper(
-        _______, __________________DF_L1____________________,                                     ___________________BLANK___________________, _______,
+        _______, __________________DF_L1____________________,                                     __________________BACKLIGHT________________, _______,
         _______, __________________DF_L2____________________,                                     __________________RGB_R1___________________, RGB_R1_WIDE,
         _______, __________________DF_L3____________________, _______, _______, _______, _______, __________________RGB_R2___________________, RGB_R2_WIDE,
                  _______, _______, _______________ADJ_THUMB_L1________________, _______________ADJ_THUMB_R1________________, _______, _______
+    ),
+    [_GAME] = LAYOUT_wrapper(
+        L1_WIDE, _________________QWERTY_L1_________________,                                       ___________________BLANK___________________, R1_WIDE,
+        L2_WIDE, _________________QWERTY_L2_________________,                                       ________________ARROWS_R2__________________, _______,
+        L3_WIDE, _________________QWERTY_L3_________________, _______, _______, _______, TG(_GAME), ________________ARROWS_R3__________________, _______,
+                    WIDE_THUMB_L1, KC_DEL, KC_SPC, LT(_SYM, KC_ENTER),          LT(_NAV, KC_TAB), KC_SPC, KC_BSPC, WIDE_THUMB_R1
     )
 };
 
+#ifdef COMMUNITY_MODULE_LAYER_MAP_ENABLE
 keypos_t layer_remap[LAYER_MAP_ROWS][LAYER_MAP_COLS] = {
     { { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 } },
     { {   6,   0 }, {   5,   0 }, {   4,   0 }, {   3,   0 }, {   2,   0 }, {   1,   0 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, {   1,   4 }, {   2,   4 }, {   3,   4 }, {   4,   4 }, {   5,   4 }, {   6,   4 } },
@@ -72,3 +68,35 @@ keypos_t layer_remap[LAYER_MAP_ROWS][LAYER_MAP_COLS] = {
     { { 255, 255 }, { 255, 255 }, { 255, 255 }, {   4,   3 }, {   2,   3 }, {   1,   3 }, {   5,   3 }, {   0,   3 }, { 255, 255 }, { 255, 255 }, {   0,   7 }, {   5,   7 }, {   1,   7 }, {   2,   7 }, {   4,   7 }, { 255, 255 }, { 255, 255 }, { 255, 255 } },
     { { 255, 255 }, {   0, 252 }, {   0, 253 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, { 255, 255 }, {   1, 252 }, {   1, 253 }, { 255, 255 } },
 };
+#endif // COMMUNITY_MODULE_LAYER_MAP_ENABLE
+
+#ifdef SWAP_HANDS_ENABLE
+// clang-format off
+    __attribute__ ((weak)) const keypos_t PROGMEM hand_swap_config[MATRIX_ROWS][MATRIX_COLS] = {
+        {{0, 4}, {1, 4}, {2, 4}, {3, 4}, {4, 4}, {5, 4}},
+        {{0, 5}, {1, 5}, {2, 5}, {3, 5}, {4, 5}, {5, 5}},
+        {{0, 6}, {1, 6}, {2, 6}, {3, 6}, {4, 6}, {5, 6}},
+        {{0, 7}, {1, 7}, {2, 7}, {3, 7}, {4, 7}, {5, 7}},
+        {{0, 0}, {1, 0}, {2, 0}, {3, 0}, {4, 0}, {5, 0}},
+        {{0, 1}, {1, 1}, {2, 1}, {3, 1}, {4, 1}, {5, 1}},
+        {{0, 2}, {1, 2}, {2, 2}, {3, 2}, {4, 2}, {5, 2}},
+        {{0, 3}, {1, 3}, {2, 3}, {3, 3}, {4, 3}, {5, 3}},
+    };
+// clang-format on
+#    ifdef ENCODER_MAP_ENABLE
+        const uint8_t PROGMEM encoder_hand_swap_config[NUM_ENCODERS] = {1,0};
+#    endif
+#endif // SWAP_HANDS_ENABLE
+
+#if defined(ENCODER_MAP_ENABLE)
+const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
+    [0] = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD),  ENCODER_CCW_CW(KC_PGDN, KC_PGUP)  },
+    [1] = { ENCODER_CCW_CW(_______, _______),  ENCODER_CCW_CW(_______, _______)  },
+    [2] = { ENCODER_CCW_CW(_______, _______),  ENCODER_CCW_CW(_______, _______)  },
+    [3] = { ENCODER_CCW_CW(_______, _______),  ENCODER_CCW_CW(_______, _______)  },
+    [4] = { ENCODER_CCW_CW(_______, _______),  ENCODER_CCW_CW(_______, _______)  },
+    [5] = { ENCODER_CCW_CW(_______, _______),  ENCODER_CCW_CW(_______, _______)  },
+    [6] = { ENCODER_CCW_CW(_______, _______),  ENCODER_CCW_CW(_______, _______)  },
+    [7] = { ENCODER_CCW_CW(_______, _______),  ENCODER_CCW_CW(_______, _______)  },
+};
+#endif // ENCODER_MAP_ENABLE

@@ -295,8 +295,8 @@ NOTE: These are all the same length.  If you do a search/replace
 #define _________________MEDIA_L2__________________       UM(CHECK), KC_MPRV, KC_MPLY, KC_MNXT, KC_VOLU
 #define _________________MEDIA_L3__________________       UM(CROSS), _______, _______, KC_MUTE, KC_VOLD
 
-#define ________________ARROWS_R2__________________       KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______
-#define ________________ARROWS_R3__________________       _______, KC_LEFT, KC_DOWN, KC_RGHT, _______
+#define ________________ARROWS_R2__________________       KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, KC_NO
+#define ________________ARROWS_R3__________________       KC_NO  , KC_LEFT, KC_DOWN, KC_RGHT, KC_NO
 
 #define _________________FUNC_L1___________________       KC_F1, KC_F2, KC_F3, KC_F4, _______
 #define _________________FUNC_L2___________________       KC_F5, KC_F6, KC_F7, KC_F8, _______
@@ -317,6 +317,12 @@ NOTE: These are all the same length.  If you do a search/replace
 #else
 #   define __________________RGB_R1___________________       ___________________BLANK___________________
 #   define __________________RGB_R2___________________       ___________________BLANK___________________
+#endif
+
+#ifdef BACKLIGHT_ENABLE
+#   define __________________BACKLIGHT________________       BL_ON, BL_OFF, BL_UP, BL_DOWN, _______
+#else
+#   define __________________BACKLIGHT________________       ___________________BLANK___________________
 #endif
 
 #define RGB_R1_WIDE     RM_SPDU

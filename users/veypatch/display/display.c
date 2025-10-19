@@ -5,7 +5,9 @@
 #include "qp.h"
 #include "qp_surface.h"
 #include "display.h"
-#include "modules/drashna/layer_map/layer_map.h"
+#ifdef COMMUNITY_MODULE_LAYER_MAP_ENABLE
+#   include "modules/drashna/layer_map/layer_map.h"
+#endif
 
 // Images
 #include "graphics/patchouli.qgf.h"
@@ -33,7 +35,14 @@ painter_device_t lcd_surface;
 
 led_t last_led_usb_state = {0};
 layer_state_t last_layer_state = {0};
+
+#if defined(OS_DETECTION_ENABLE)
 os_variant_t last_os = {0};
+#endif // OS_DETECTION_ENABLE
+
+#ifdef SWAP_HANDS_ENABLE
+static bool last_swap_state = false;
+#endif // SWAP_HANDS_ENABLE
 
 static uint16_t lcd_surface_fb[135*240];
 
@@ -45,6 +54,8 @@ static uint16_t lcd_surface_fb[135*240];
 #define HSV_SCROLL_ON 202, 191, 245
 #define HSV_NUM_OFF 142, 104, 77
 #define HSV_NUM_ON 142, 191, 245
+#define HSV_SWAP_ON 145, 235, 155
+#define HSV_SWAP_OFF 145, 191, 245
 
 #define HSV_LAYER_0 0, 0, 160
 #define HSV_LAYER_3 0, 82, 255
@@ -57,6 +68,7 @@ static uint16_t lcd_surface_fb[135*240];
 // #define HSV_LAYER_8 213, 56, 255
 #define HSV_LAYER_UNDEF 0, 255, 255
 
+#ifdef COMMUNITY_MODULE_LAYER_MAP_ENABLE
 // clang-format off
 __attribute__((weak)) const char PROGMEM code_to_name[256] = {
 //   0    1    2    3    4    5    6    7    8    9    A    B    c    D    E    F
@@ -100,6 +112,7 @@ uint16_t extract_basic_keycode(uint16_t keycode, keyrecord_t *record, bool check
 
     return keycode;
 }
+#endif // COMMUNITY_MODULE_LAYER_MAP_ENABLE
 
 void update_display(void) {
     if(last_led_usb_state.raw != host_keyboard_led_state().raw || force_redraw) {
@@ -153,8 +166,34 @@ void update_display(void) {
         }
         last_layer_state = layer_state;
     }
+#ifdef SWAP_HANDS_ENABLE
+    bool current_swap_state = is_swap_hands_on();
+    if (last_swap_state != current_swap_state || force_redraw) {
+        is_swap_hands_on()
+        ? qp_drawtext_recolor(
+              lcd_surface,
+              5,
+              Retron27->line_height * 3.75,
+              Retron27_underline,
+              "Swap",
+              HSV_SWAP_OFF,
+              HSV_BLACK
+          )
+        : qp_drawtext_recolor(
+              lcd_surface,
+              5,
+              Retron27->line_height * 3.75,
+              Retron27,
+              "Swap",
+              HSV_SWAP_ON,
+              HSV_BLACK
+          );
+        last_swap_state = current_swap_state;
+    }
+#endif // SWAP_HANDS_ENABLE
 }
 
+#ifdef COMMUNITY_MODULE_LAYER_MAP_ENABLE
 void update_layer_map(void) {
     if (get_layer_map_has_updated()) {
         uint16_t x = 0;
@@ -182,7 +221,9 @@ void update_layer_map(void) {
         set_layer_map_has_updated(false);
     }
 }
+#endif // COMMUNITY_MODULE_LAYER_MAP_ENABLE
 
+#if defined(OS_DETECTION_ENABLE)
 void display_detected_host_os_user(void) {
     os_variant_t detected_os = detected_host_os();
     qp_rect(lcd_surface, 5, Retron27->line_height * 1.25, LCD_WIDTH, Retron27->line_height * 2.5, HSV_BLACK, true);
@@ -210,6 +251,7 @@ void display_detected_host_os_user(void) {
             break;
     }
 }
+#endif // OS_DETECTION_ENABLE
 
 void display_post_init_user(void) {
     // Turn on backlight
@@ -255,10 +297,16 @@ void display_housekeeping_task_user(void) {
             previous_matrix_activity_time = last_matrix_activity_time();
         }
         update_display();
+
+#ifdef COMMUNITY_MODULE_LAYER_MAP_ENABLE
         update_layer_map();
+#endif // COMMUNITY_MODULE_LAYER_MAP_ENABLE
+
+#if defined(OS_DETECTION_ENABLE)
         if(force_redraw == 1) {
             display_detected_host_os_user();
         }
+#endif // OS_DETECTION_ENABLE
 
         qp_surface_draw(lcd_surface, lcd, 0, 0, 0);
 
