@@ -61,13 +61,3 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     )
 };
 // clang-format on
-
-#if defined(KEYBOARD_splitkb_halcyon_kyria_rev4)
-void keyboard_pre_init_user(void) {
-    // Set our LED pin as output
-    gpio_set_pin_output(27);
-    // Turn the LED off
-    // (Due to technical reasons, high is off and low is on)
-    gpio_write_pin_low(27);
-}
-#endif // KEYBOARD_splitkb_halcyon_kyria_rev4
