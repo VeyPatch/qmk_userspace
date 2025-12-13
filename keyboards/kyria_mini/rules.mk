@@ -1,0 +1,8 @@
+
+ifdef HANDS_LEFT
+    OPT_DEFS += -DINIT_EE_HANDS_LEFT
+endif
+
+ifdef HANDS_RIGHT
+    OPT_DEFS += -DINIT_EE_HANDS_RIGHT
+endif
