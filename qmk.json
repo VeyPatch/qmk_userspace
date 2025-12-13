@@ -8,22 +8,6 @@
             {
                 "CONVERT_TO": "liatris"
             }
-        ],
-        [
-            "kyria_mini",
-            "miryoku",
-            {
-                "TARGET": "kyria_mini_helios_left",
-                "HANDS_LEFT": "1"
-            }
-        ],
-        [
-            "kyria_mini",
-            "miryoku",
-            {
-                "TARGET": "kyria_mini_helios_right",
-                "HANDS_RIGHT": "1"
-            }
         ]
     ]
 }
