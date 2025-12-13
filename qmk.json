@@ -6,7 +6,8 @@
             "miryoku",
             {
                 "TARGET": "kyria_mini_helios_left",
-                "HANDS_LEFT": "1"
+                "HANDS_LEFT": "1",
+                "MIRYOKU_ALPHAS": "QWERTY"
             }
         ],
         [
@@ -14,7 +15,8 @@
             "miryoku",
             {
                 "TARGET": "kyria_mini_helios_right",
-                "HANDS_RIGHT": "1"
+                "HANDS_RIGHT": "1",
+                "MIRYOKU_ALPHAS": "QWERTY"
             }
         ]
     ]
